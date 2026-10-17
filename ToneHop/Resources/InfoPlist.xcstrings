@@ -1,0 +1,24 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSLocalNetworkUsageDescription": {
+      "comment": "Explains local network access for AirPlay discovery.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ToneHop uses the local network to discover available AirPlay audio output devices."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ToneHop 使用本地网络发现可用的 AirPlay 音频输出设备。"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

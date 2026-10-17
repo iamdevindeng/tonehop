@@ -1,0 +1,4596 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "audio.airplay_identity_ambiguous": {
+      "comment": "User-facing text in ToneHop/Sources/Services/PrivateRouteEvidence.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some AirPlay devices cannot be identified and are temporarily unavailable."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "部分 AirPlay 设备身份不明确，暂不可选择。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.airplay_preparation": {
+      "comment": "User-facing text in ToneHop/Sources/Services/RetainedRouteCapability.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep ToneHop running and select this device once in the macOS Sound menu to enable switching during this session."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请保持 ToneHop 运行，在 macOS「声音」菜单中选择一次此设备，即可在本次运行期间切换。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.airplay_switch_timeout": {
+      "comment": "User-facing text in ToneHop/Sources/Services/PrivateRouteService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay switching timed out. The system did not confirm the target device."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay 切换超时，系统未确认目标设备。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.click_to_switch": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Click a device to switch output"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "点击设备以切换输出"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.confirm_airplay_receiver": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioCatalog.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirming the AirPlay receiver. Select the device in the macOS Sound menu."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在确认 AirPlay 接收器，请在 macOS「声音」菜单中选择目标设备。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.confirm_device_status": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioCatalog.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirming device status…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在确认设备状态…"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.device_name_unreadable": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The device name or identifier could not be read."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设备名称或标识不可读。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.device_read_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading device %lld: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "读取设备 %lld：%@"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.device_unavailable": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The device is unavailable. Try again later."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设备当前不可用，请稍后重试。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.directory_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The device list could not be read. Try again later."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设备清单读取失败，请稍后重试。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.duplicate_identifiers": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate device identifiers were found. The affected devices cannot be selected right now."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "存在重复设备标识，相关目标暂不可切换。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.exit_check_unsupported": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift, ToneHop/Sources/Services/PrivateRouteService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The current audio service does not support checking cleanup before quitting."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前音频服务不支持退出清理检查。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.exit_cleanup_unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Services/AudioExitCoordinator.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleanup of the previous audio stream is not yet confirmed. The app will stay open. Try quitting again later."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "旧音频流尚未确认清理完成，应用保持运行，请稍后重试退出。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.exit_not_prepared": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The quit request is not ready yet."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出请求尚未准备完成。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.exit_output_unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Services/AudioExitCoordinator.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The switch to the built-in Mac speakers could not be confirmed. Quit cleanup was not performed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未能确认输出已切换到 Mac 自带扬声器，未执行退出清理。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.exit_speakers_changed": {
+      "comment": "User-facing text in ToneHop/Sources/Services/AudioExitCoordinator.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The built-in Mac speakers changed state. The previous audio stream was not cleaned up."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mac 自带扬声器状态已变化，未清理旧音频流。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.exit_speakers_unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Services/AudioExitCoordinator.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The built-in Mac speakers could not be confirmed. The previous audio stream was not cleaned up."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法确认 Mac 自带扬声器，未清理旧音频流。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.exit_stream_changed": {
+      "comment": "User-facing text in ToneHop/Sources/Services/AudioExitCoordinator.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The previous audio stream changed. Output and cleanup were left unchanged. Quit again to confirm."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "旧音频流已变化，未切换输出或清理。请重新退出并确认。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.exit_stream_identity_incomplete": {
+      "comment": "User-facing text in ToneHop/Sources/Services/PrivateRouteService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The previous audio stream could not be fully identified. The app did not quit."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "旧音频流身份不完整，未执行退出。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.identity_ambiguous": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioDevice.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The device could not be uniquely identified. Switching was cancelled."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法唯一确认设备身份，已取消切换。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.interaction_hint": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Click to switch. Shortcuts need ⌘ or ⌃"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "点按设备切换，快捷键需含 ⌘ 或 ⌃"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.listener_cleanup_pending": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audio listener cleanup is not yet complete. Refreshing periodically."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音频状态监听暂未完成清理，正在定期刷新。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.multiple_network_targets": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioCatalog.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Multiple network targets match the same system device. Their identities are not yet confirmed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多个网络目标对应同一系统设备，身份待确认。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.multiple_selected_routes": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioCatalog.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system reports multiple selected routes. The current output is not confirmed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统返回多个已选路由，当前输出待确认。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.multiple_system_devices": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioCatalog.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Multiple system devices match the same network target. Their identities are not yet confirmed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多个系统设备对应同一网络目标，身份待确认。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.network_identity_ambiguous": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioCatalog.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some network devices cannot be identified and are temporarily unavailable."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "部分网络设备身份不明确，暂不可选择。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.network_status_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Services/PrivateRouteEvidence.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Network audio status could not be read. The AirPlay device list and current receiver cannot be confirmed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "网络音频状态读取失败，AirPlay 设备列表与当前接收器暂无法确认。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.network_status_incomplete": {
+      "comment": "User-facing text in ToneHop/Sources/Services/PrivateRouteEvidence.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some network audio information is incomplete (%@). Devices with confirmed information are still listed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "部分网络音频信息读取不完整（%@），已保留可确认的设备。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.network_status_partial_failure": {
+      "comment": "User-facing text in ToneHop/Sources/Services/PrivateRouteEvidence.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some network audio status could not be read (%@). Related device information or capabilities may be incomplete."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "部分网络音频状态读取失败（%@），相关设备信息或能力可能不完整。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.network_switch_unavailable": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioCatalog.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This network device cannot be selected right now."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该网络设备当前不可切换。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.no_devices": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No available sound output devices found."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到可用的声音输出设备。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.no_reusable_route": {
+      "comment": "User-facing text in ToneHop/Sources/Services/PrivateRouteService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This device has no reusable system route right now."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该设备当前没有可复用的系统路由。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.notifications_unavailable": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System notifications are unavailable. Refreshing periodically."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统状态通知暂不可用，正在定期刷新。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.output_change_disallowed": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system does not currently allow changing the default output."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统当前不允许更改默认输出。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.output_not_aligned": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioCatalog.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The network route and system output do not yet match. The current output is not confirmed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "网络路由与系统默认输出尚未一致，当前输出待确认。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.reading_devices": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading sound output devices…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在读取声音输出设备…"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.receiver_name_unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioCatalog.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The receiver name for the current AirPlay route is not yet confirmed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前 AirPlay 路由的接收器名称尚无法确认。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.service_restarted": {
+      "comment": "User-facing text in ToneHop/Sources/Services/AudioServiceEpoch.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system audio service restarted. Wait for device status to recover, then try again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统音频服务已重启，请等待设备状态恢复后重试。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.speaker_inventory_unstable": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audio devices are still changing. The built-in Mac speakers cannot be reliably confirmed yet."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音频设备仍在变化，暂时无法稳定确认 Mac 自带扬声器。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.speaker_terminal_ambiguous": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The built-in device also exposes other outputs. The built-in Mac speakers cannot be identified separately."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "内建设备同时暴露其他输出终端，无法单独确认 Mac 自带扬声器。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.speaker_terminal_unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The built-in audio output terminal is not yet identified. No output was selected for quitting."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "内建音频设备的输出终端身份尚未确认，未选择退出目标。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.speaker_verification_unsupported": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The current audio service cannot verify the built-in Mac speakers."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前音频服务尚不支持验证 Mac 自带扬声器。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.speakers_missing": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No uniquely identified built-in Mac speakers were found. No other audio device was selected."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到可唯一确认的 Mac 自带扬声器，未选择其他音频设备。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.switch_incomplete": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switching did not finish"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换未完成"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.switch_not_ready": {
+      "comment": "User-facing text in ToneHop/Sources/Services/AudioDeviceStrategies.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This device is not ready to be selected."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该设备尚不可切换。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.switch_target_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not switch to %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法切换到 %@"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.switch_unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switching result not yet confirmed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂未确认切换结果"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.switched_to": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switched to %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已切换到 %@"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.switching_to": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switching to %@…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在切换到 %@…"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.system_operation_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioDevice.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ failed (%lld)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@失败（%lld）"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.target_missing": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioDevice.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The device is offline. Refresh and try again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设备已离线，请刷新后重试。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.target_offline_or_unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The device is offline or its identity is unconfirmed. Check it and try again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设备已离线或身份待确认，请检查后重试。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.target_switch_unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not confirm the switch to %@. Check the device and try again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未能确认切换到 %@，请检查设备后重试。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "audio.waiting_for_switch": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/AudioStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Still waiting for switching to finish…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仍在等待切换结束…"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.discovery.context_unreadable": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Network audio devices cannot be read right now. The AirPlay list may be incomplete."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂时无法读取网络音频设备，AirPlay 列表可能不完整。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.discovery.initialization_failed": {
+      "comment": "AirPlay status or error shown to the user. Followed by an unlocalized system exception name; preserve the trailing space.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to initialize AirPlay: "
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay 接口初始化失败："
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.discovery.list_pending": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The AirPlay device list is not available yet. Connecting to a device for the first time has not been verified."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚未取得 AirPlay 设备清单，冷连接能力未确认。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.discovery.list_unreadable": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay discovery did not return a readable device list."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay 发现接口未返回可读取的设备清单。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.discovery.permission_missing": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This build lacks system audio routing permission. Seamless AirPlay switching is unavailable."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前构建缺少系统音频路由权限，暂时无法无感切换 AirPlay。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.discovery.quitting": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app is quitting. AirPlay discovery was not started."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "应用正在退出，未启动 AirPlay 发现。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.discovery.session_failed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to create an AirPlay discovery session."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法建立 AirPlay 发现会话。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.discovery.status_failed": {
+      "comment": "AirPlay status or error shown to the user. Followed by an unlocalized system exception name; preserve the trailing space.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to read AirPlay status: "
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "读取 AirPlay 状态失败："
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.discovery.unavailable": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay discovery is unavailable on this system."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前系统的 AirPlay 发现接口不可用。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.endpoint.abi_unverified": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The calling convention of the AirPlay receiver discovery interface has not been verified."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay 接收器发现接口的调用约定尚未验证。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.endpoint.interface_incomplete": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The AirPlay receiver discovery interface is incomplete on this system."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前系统的 AirPlay 接收器发现接口不完整。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.endpoint.list_invalid": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system did not return a valid AirPlay receiver list."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统未返回有效的 AirPlay 接收器清单。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.endpoint.not_started": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The AirPlay receiver discovery session has not started."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay 接收器发现会话尚未启动。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.endpoint.quitting": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app is quitting. AirPlay receiver discovery was not started."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "应用正在退出，未启动 AirPlay 接收器发现。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.endpoint.read_failed": {
+      "comment": "AirPlay status or error shown to the user. Followed by an unlocalized system exception name; preserve the trailing space.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to read AirPlay receivers: "
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "读取 AirPlay 接收器失败："
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.endpoint.session_failed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to create an AirPlay receiver discovery session."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法建立 AirPlay 接收器发现会话。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.endpoint.start_exception": {
+      "comment": "AirPlay status or error shown to the user. Followed by an unlocalized system exception name; preserve the trailing space.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to start AirPlay receiver discovery: "
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启动 AirPlay 接收器发现失败："
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.endpoint.start_failed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system could not start AirPlay receiver discovery."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统未能启动 AirPlay 接收器发现。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.aggregate_read_failed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to read the system AirPlay aggregate."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取系统 AirPlay 聚合。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.allocation_failed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to allocate state for the routing operation."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法分配路由操作状态。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.callback_pending": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for the submitted connection operation to return."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "等待已提交的连接操作回调。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.cleanup_exception": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleanup conditions could not be confirmed. The original route reference has been kept."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清理条件无法确认，已保留原路由引用。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.cleanup_readback_pending": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for the system to finish connection cleanup or confirm the output state."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "等待系统完成连接清理或输出状态读回。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.cleanup_reference_held": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Safe cleanup of this connection could not be confirmed. The original reference has been kept."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法确认本次连接的安全清理条件，已保留原引用。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.cleanup_waiting": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The previous AirPlay reference has been kept until safe cleanup can be confirmed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已保留上一次 AirPlay 引用，等待安全清理条件。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.connection_quitting": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app is quitting. No connection request was submitted."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "应用正在退出，未提交连接。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.connection_unconfirmed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system has not confirmed the AirPlay connection. The original reference has been kept for cleanup."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统尚未确认 AirPlay 连接，已保留原引用等待清理。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.device_changed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The new audio device has changed or switching was cancelled."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新的音频设备已变化或切换已取消。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.device_not_ready": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The connection was cancelled or the new audio device is not ready yet."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接已取消或新的音频设备尚未就绪。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.executor_required": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay routing operations must run in order on their dedicated thread."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay 路由操作必须在专用线程串行执行。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.failed_cleanup_error": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An internal error occurred while finishing the failed connection."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "失败连接的收尾遇到内部错误。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.failed_cleanup_unconfirmed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Safe cleanup of the failed connection could not be confirmed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法确认失败连接的安全清理条件。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.interface_unavailable": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay routing is unavailable on this system."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前系统的 AirPlay 路由接口不可用。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.new_device_selection_failed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system could not select the new AirPlay audio device."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统未能选择新的 AirPlay 音频设备。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.output_changed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system output has changed or switching was cancelled."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统输出已变化或切换已取消。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.quit_cleanup_unconfirmed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleanup conditions for the old audio stream could not be confirmed. The app did not quit or switch outputs."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚无法确认旧音频流的清理条件，未执行退出，也未切换输出。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.quit_pending": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The previous connection or cleanup operation has not been confirmed complete. The app will keep running. No additional output switch or cleanup request was submitted."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上一次连接或清理操作尚未确认完成，应用保持运行；未再次切换输出或提交清理。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.quit_read_failed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to read the old audio stream state. The app did not quit."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "读取旧音频流状态失败，未执行退出。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.quit_removal_failed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The previous audio stream cleanup failed or returned an unexpected identity, so cleanup cannot be submitted again. The app will keep running. No additional output switch was requested."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上一次音频流清理已失败或回调身份异常，不能重复提交清理；应用保持运行，未再次切换输出。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.read_failed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to read the retained AirPlay route."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "读取保留的 AirPlay 路由失败。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.reason.cleanup_blocked": {
+      "comment": "Explanation shown for an unavailable retained AirPlay receiver.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleanup of the previous connection could not be confirmed. Select the receiver again in system settings"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上一次连接清理条件无法确认，请在系统中重新选择"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.reason.cleanup_pending": {
+      "comment": "Explanation shown for an unavailable retained AirPlay receiver.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting to clean up the previous connection"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "等待清理上一次连接"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.reason.operation_pending": {
+      "comment": "Explanation shown for an unavailable retained AirPlay receiver.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for the system to finish the previous operation"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "等待系统完成上一次操作"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.reason.receiver_unavailable": {
+      "comment": "Explanation shown for an unavailable retained AirPlay receiver.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The receiver is currently unavailable"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接收器当前不可用"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.reason.reuse_unsafe": {
+      "comment": "Explanation shown for an unavailable retained AirPlay receiver.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The current system route cannot be safely reused"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前系统路由状态无法安全复用"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.reason.route_changed": {
+      "comment": "Explanation shown for an unavailable retained AirPlay receiver.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The original route has changed. Select the receiver again in system settings"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "原路由已变化，请在系统中重新选择"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.reason.uncaptured": {
+      "comment": "Explanation shown for an unavailable retained AirPlay receiver.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The receiver selected by the system has not been captured yet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚未捕获系统选中的接收器"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.recovery_changed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The existing audio stream, output, or permission to proceed has changed. Recovery was not performed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "现有音频流、输出或操作资格已变化，未执行恢复。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.recovery_not_submitted": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recovery of the existing audio stream was not submitted."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "现有音频流恢复未提交。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.recovery_selection_pending": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recovery of the existing audio stream was requested. The system selection has not been fully confirmed yet."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已请求恢复现有音频流，暂未确认系统完整选中状态。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.recovery_unconfirmed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The existing audio stream or current output could not be confirmed. Recovery was not performed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "现有音频流或当前输出无法确认，未执行恢复。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.reuse_unavailable": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route reuse is unavailable on this system."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前系统的路由复用接口不可用。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.route_not_captured": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No reusable system route is available yet. Select this receiver in system settings first."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚无可复用的系统路由，请先在系统中选择此接收器。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.route_read_failed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to read the system audio route."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取系统音频路由。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.route_unsafe": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The current route does not allow safe switching."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前路由状态不允许安全切换。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.selection_failed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay switching failed. The original route has been kept for safe cleanup."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay 切换失败，保留原路由以便安全清理。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.session_ended": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app's audio session has ended."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "应用音频会话已结束。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.stream_changed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The original audio stream or current output has changed. Switching was not performed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "原音频流或当前输出已变化，未执行切换。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.stream_selection_failed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system could not select the original AirPlay audio stream."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统未能选择原有 AirPlay 音频流。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.stream_selection_unconfirmed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system selection of the original AirPlay audio stream could not be confirmed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未能确认系统已选中原有 AirPlay 音频流。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.switch_cancelled": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switching was cancelled."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已取消切换。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.retained.target_selection_unconfirmed": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system selection of the target AirPlay receiver could not be confirmed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未能确认系统已选中目标 AirPlay 接收器。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.selection.device_unavailable": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seamless switching to this AirPlay device is unavailable right now. Refresh and try again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该 AirPlay 设备目前无法无感切换，请刷新后重试。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.selection.quitting": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app is quitting. No switch request was submitted."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "应用正在退出，未提交切换。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.selection.request_cancelled": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The switch request was cancelled."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换请求已取消。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.selection.request_failed": {
+      "comment": "AirPlay status or error shown to the user. Followed by an unlocalized system exception name; preserve the trailing space.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The AirPlay switch request failed: "
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay 切换请求失败："
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "native.snapshot.unavailable": {
+      "comment": "AirPlay status or error shown to the user.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading the selected AirPlay route is unavailable on this system."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前系统的已选 AirPlay 路由读取接口不可用。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.audio_property_invalid_length": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid audio property length"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音频属性长度异常"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.check_output_capability": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check output switching capability"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检查输出切换能力"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.current_receiver": {
+      "comment": "User-facing text in ToneHop/Sources/Services/PrivateRouteEvidence.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "current receiver confirmation"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前接收器确认"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.device_list": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Device list"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设备列表"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.invalid_data_length": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid %@ data length"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@数据长度异常"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.invalid_length": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid %@ length"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@长度异常"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.list_separator": {
+      "comment": "Separator between source names in network audio health warnings.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ", "
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "、"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.listen_audio_status": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listen for audio changes"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "监听音频状态"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.network_discovery": {
+      "comment": "User-facing text in ToneHop/Sources/Services/PrivateRouteEvidence.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "network device discovery"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "网络设备发现"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.output_channels_invalid_length": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid output channel data length"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "输出通道数据长度异常"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.output_streams": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Output audio streams"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "输出音频流"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.output_terminal_icon": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Output terminal icon"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "输出终端图形"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.read_audio_property": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read audio property"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "读取音频属性"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.read_device_name_or_id": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read device name or identifier"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "读取设备名称或标识"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.read_length": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read %@ length"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "读取%@长度"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.read_operation": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "读取%@"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.read_output_channels": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read output channels"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "读取输出通道"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.receiver_capability": {
+      "comment": "User-facing text in ToneHop/Sources/Services/PrivateRouteEvidence.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "receiver switching capability"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接收器切换能力"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.receiver_discovery": {
+      "comment": "User-facing text in ToneHop/Sources/Services/PrivateRouteEvidence.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "receiver discovery"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接收器发现"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "service.request_output_switch": {
+      "comment": "User-facing text in ToneHop/Sources/Services/CoreAudioService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Request output switch"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请求切换输出"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.already_taken": {
+      "comment": "User-facing text in ToneHop/Sources/Models/DeviceShortcut.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This shortcut is already in use. Choose another combination."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此快捷键已被占用，请换一个组合。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.binding_changed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The shortcut changed. Record it again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快捷键已发生变化，请重新录入。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.binding_saved": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shortcut set for %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已设置 %@ 的快捷键。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.check_system": {
+      "comment": "User-facing text in ToneHop/Sources/Services/GlobalShortcutService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check system shortcuts"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检查系统快捷键"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.clear_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The shortcut was not cleared"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未清除快捷键"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.cleared": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shortcut cleared for %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已清除 %@ 的快捷键。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.close_listener": {
+      "comment": "User-facing text in ToneHop/Sources/Services/GlobalShortcutService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close shortcut listener"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭快捷键监听"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.closed": {
+      "comment": "User-facing text in ToneHop/Sources/Models/DeviceShortcut.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The shortcut service is closed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快捷键服务已关闭。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.configuration_in_use": {
+      "comment": "User-facing text in ToneHop/Sources/Services/ShortcutPreferences.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Another instance is using the shortcut configuration. Quit that instance, then reload."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "另一实例正在使用快捷键配置。请退出该实例后重新读取。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.configuration_operation_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Services/ShortcutPreferences.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ failed (%lld). Check the configuration folder, then reload."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@失败（%lld），请检查配置目录后重新读取。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.device_error_detail": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@：%@"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.discovery_changed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The device discovery state changed. The record was not removed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设备发现状态已变化，未移除记录。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.duplicate_binding": {
+      "comment": "User-facing text in ToneHop/Sources/Models/DeviceShortcut.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This shortcut is already assigned to “%@”."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此快捷键已用于“%@”。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.event_ids_exhausted": {
+      "comment": "User-facing text in ToneHop/Sources/Services/GlobalShortcutService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shortcut event identifiers are exhausted. Restart the app."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快捷键事件标识已耗尽，请重新启动应用。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.identity_unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A shortcut cannot be set until this device is uniquely identified."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚未确认此设备的唯一身份，暂时无法设置快捷键。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.install_listener": {
+      "comment": "User-facing text in ToneHop/Sources/Services/GlobalShortcutService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install shortcut listener"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安装快捷键监听"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.invalid_configuration": {
+      "comment": "User-facing text in ToneHop/Sources/Models/DeviceShortcut.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The shortcut configuration could not be read. The original file has been kept."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快捷键配置无法读取，已保留原文件。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.listener_not_ready": {
+      "comment": "User-facing text in ToneHop/Sources/Services/GlobalShortcutService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The shortcut listener is not ready yet."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快捷键监听尚未就绪。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.listener_unavailable": {
+      "comment": "User-facing text in ToneHop/Sources/Services/GlobalShortcutService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The shortcut listener is unavailable. Restart the app."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快捷键监听不可用，请重新启动应用。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.loading": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading shortcuts…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在读取快捷键…"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.lock_configuration": {
+      "comment": "User-facing text in ToneHop/Sources/Services/ShortcutPreferences.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lock shortcut configuration"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "锁定快捷键配置"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.menu_conflict": {
+      "comment": "User-facing text in ToneHop/Sources/Models/DeviceShortcut.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This shortcut is already assigned to the “%@” menu item."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此快捷键已用于“%@”菜单项。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.modifier_required": {
+      "comment": "User-facing text in ToneHop/Sources/Models/DeviceShortcut.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Include ⌘ Command or ⌃ Control in the shortcut."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请搭配 ⌘ Command 或 ⌃ Control 设置快捷键。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.name_cache_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The device name cache was not saved: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设备名称缓存未保存：%@"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.occupied_by": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ is assigned to %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 已用于 %@"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.open_configuration_lock": {
+      "comment": "User-facing text in ToneHop/Sources/Services/ShortcutPreferences.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open shortcut configuration lock"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开快捷键配置锁"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.pause_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not pause all shortcuts. Recording was cancelled. %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未能暂停全部快捷键，录入已取消。%@"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.record_removal_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The device record was not removed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未移除设备记录"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.record_removed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local record removed for %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已移除 %@ 的本地记录。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.register": {
+      "comment": "User-facing text in ToneHop/Sources/Services/GlobalShortcutService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Register shortcut"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "注册快捷键"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.registration_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Models/DeviceShortcut.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ failed (%lld). Try again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@失败（%lld），请重试。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.release": {
+      "comment": "User-facing text in ToneHop/Sources/Services/GlobalShortcutService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Release shortcut"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "释放快捷键"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.reload": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reload"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新读取"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.removal_error_detail": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@：%@"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.retry_registration": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry Registration"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重试注册"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.retry_save": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry Save"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重试保存"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.save_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The new shortcut was not saved: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未保存新快捷键：%@"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.saving": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saving shortcuts…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在保存快捷键…"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.system_check_incomplete": {
+      "comment": "User-facing text in ToneHop/Sources/Services/GlobalShortcutService.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System shortcuts could not be fully checked. Try again later."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法完整检查系统快捷键，请稍后重试。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.system_conflict": {
+      "comment": "User-facing text in ToneHop/Sources/Models/DeviceShortcut.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS uses this shortcut. Choose another combination."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此快捷键已由 macOS 使用，请换一个组合。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.temporary_release_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Stores/ShortcutStore.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " Could not release the temporary shortcut registration: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " 临时注册释放失败：%@"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.unsupported_key": {
+      "comment": "User-facing text in ToneHop/Sources/Models/DeviceShortcut.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This key is not supported. Choose a regular key or an F key."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此按键暂不支持，请选择普通键或 F 功能键。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.unsupported_modifier": {
+      "comment": "User-facing text in ToneHop/Sources/Models/DeviceShortcut.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This modifier is not supported. Use Command, Control, Option, or Shift."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此修饰键暂不支持，请使用 Command、Control、Option 或 Shift。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "shortcut.unsupported_version": {
+      "comment": "User-facing text in ToneHop/Sources/Models/DeviceShortcut.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shortcut configuration version %lld is not supported. The original file has been kept."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快捷键配置版本 %lld 暂不支持，已保留原文件。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.cancel": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.device.confirming": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking device identity…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在确认设备…"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.device.current": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current sound output"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前声音输出"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.device.pending": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pending"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "待确认"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.device.prepare_short": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select once in system Sound settings"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "先在系统「声音」中选择一次此设备"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.device.switch_hint": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch sound output to this device"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换声音输出到此设备"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.device.unavailable": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Device is currently unavailable"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设备当前不可用"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.disclosure.collapsed": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collapsed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已折叠"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.disclosure.expanded": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expanded"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已展开"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.output.discovered": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discovered sound output devices"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已发现的声音输出设备"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.output.empty": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No sound output devices available"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂无可用的声音输出设备"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.output.offline_count": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Devices Not Found (%lld)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未发现的设备（%lld）"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.output.reading": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading sound output devices…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在读取声音输出设备…"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.output.title": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sound Output"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "声音输出"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.preview.bedroom_failure": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isolated preview: switching to Bedroom failed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隔离预览模拟：Bedroom 切换失败。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.preview.display_failure": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isolated preview: display output switch failed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隔离预览模拟：显示器切换失败。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.preview.registration": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isolated preview registration"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隔离预览注册"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.quit.confirm": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch and Quit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换并退出"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.quit.menu": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.quit.message": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This will disconnect audio from “%@” and switch output to your Mac’s built-in speakers."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将断开与“%@”的音频连接，并将声音输出切换到 Mac 自带扬声器。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.quit.receiver_fallback": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay device"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPlay 设备"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.quit.title": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit ToneHop?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出 ToneHop？"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.record.remove": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.record.remove_help": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove the record and shortcut without changing sound output. The device will appear again when discovered."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除记录和快捷键，不影响声音输出；设备再次出现时仍会显示"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.record.remove_label": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove the local record for %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除 %@ 的本地记录"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.record.remove_menu": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove Record"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除记录"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.record.remove_message": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This also clears its shortcut. Audio output stays unchanged."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "同时清除快捷键，不影响声音输出。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.record.remove_title": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove the record for “%@”?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除「%@」的记录？"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.shortcut.help": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Click to record a shortcut with Command or Control. Backspace clears it; Escape cancels."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按下后录入包含 Command 或 Control 的组合，Backspace 清除，Escape 取消。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.shortcut.label": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shortcut for %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 的快捷键"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.shortcut.pending_label": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shortcut for %@, device identity not yet confirmed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 的快捷键，设备身份待确认"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.shortcut.record": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "录入…"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.shortcut.record_help": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Command or Control + a regular or function key; ⌫ clears, Esc cancels"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Command 或 Control＋普通键／F 键；⌫ 清除，Esc 取消"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.shortcut.recovery_label": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ shortcuts"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@快捷键"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.shortcut.saved_label": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved shortcut for %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 的已保存快捷键"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.shortcut.saved_pending": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved shortcut for %@, checking device identity"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 的已保存快捷键，正在确认设备"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.shortcut.unset": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not Set"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未设置"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.label": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ToneHop, Sound Output"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ToneHop，声音输出"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.output": {
+      "comment": "Menu bar accessibility label. Argument is the unchanged device name or a localized unknown-output message.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ToneHop, %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ToneHop，%@"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.output_warning": {
+      "comment": "Menu bar accessibility label. Argument is the unchanged device name or a localized unknown-output message.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ToneHop, %@, open to view the message"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ToneHop，%@，打开查看提示"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.tooltip": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ToneHop · Sound Output"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ToneHop · 声音输出"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.unconfirmed": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current output is not yet confirmed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前声音输出待确认"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.volume.connect": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect to view volume"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接后查看音量"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.volume.failed": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume change failed. Try again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音量调整失败，请重试"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.volume.help": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adjust this device’s volume without switching sound output"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "调整此设备音量，不切换声音输出"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.volume.label": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System volume for %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 的系统音量"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.volume.muted": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muted; raise volume to try unmuting"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已静音；调高音量将尝试解除静音"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.volume.reading": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading volume…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在读取音量…"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.volume.unavailable": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unavailable"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂不可用"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.volume.unconfirmed": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume not yet confirmed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂时无法确认音量"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.volume.unsupported": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume control unavailable"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不支持音量调节"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.volume.value_unconfirmed": {
+      "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume value not yet confirmed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音量值暂未确认"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.closed": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The volume service is closed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音量服务已关闭"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.compatibility_unverified": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume control compatibility has not yet been verified for this device"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此设备的音量控制尚未完成兼容验证"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.identity_changed": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The device state changed. Try adjusting the volume again"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设备状态已变化，请重新调节"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.identity_unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The device cannot be confirmed right now"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂时无法确认设备"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.invalid_readback": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system returned an invalid volume value"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统返回的音量无效"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.invalid_value": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid volume value"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音量值无效"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.listener_unavailable": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume notifications are unavailable. Refreshing periodically"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音量通知暂不可用，正在定期刷新"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.mute_unknown": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume adjusted. Mute status cannot be confirmed right now"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音量已调整，暂时无法确认静音状态"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.muted_unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Still muted. The volume change is not yet confirmed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仍处于静音，音量调整尚未确认"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.not_connected": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect to check whether volume control is supported"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接后检查是否支持音量调节"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.paused": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume control is temporarily unavailable"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前暂不可调节音量"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.read_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cannot read the volume right now (%lld)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂时无法读取音量（%lld）"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.read_only": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The volume of this device cannot be adjusted here"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此设备的音量无法在此调节"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.still_muted": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume adjusted. The device is still muted"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音量已调整，仍处于静音"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The system has not yet confirmed the volume change"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统尚未确认音量调整"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.unmuted_unconfirmed": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unmuted. The volume change is not yet confirmed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已解除静音，音量调整尚未确认"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.unsupported": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This device does not support system volume control"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此设备不支持系统音量调节"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "volume.write_failed": {
+      "comment": "User-facing text in ToneHop/Sources/Models/AudioVolume.swift. Device names and identifiers are inserted unchanged.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume adjustment failed (%lld)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音量调整失败（%lld）"
+          }
+        }
+      },
+      "extractionState": "manual"
+    }
+  },
+  "version": "1.0"
+}
