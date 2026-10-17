@@ -2,29 +2,48 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-A native macOS menu bar app for switching audio output devices, setting device volume, and assigning global keyboard shortcuts. Built with SwiftUI, AppKit, and Core Audio.
+ToneHop is a native macOS menu bar app. Use it to switch audio output devices, adjust device volume, and set global keyboard shortcuts. It uses SwiftUI, AppKit, and Core Audio.
 
-- Choose an output from the menu bar and see the result confirmed by the system.
-- Adjust each device's volume when the device exposes a supported volume control.
-- Assign a shortcut to each device. Bindings stay saved when a device is unavailable.
+- Select an output device from the menu bar. ToneHop shows the switch result after the system confirms it.
+- Adjust a device's volume if the device has a supported volume control.
+- Set a shortcut for each device. ToneHop keeps saved shortcuts when a device is unavailable.
 - Use the app in English or Simplified Chinese. Device names keep their original text.
 
 **[Download ToneHop v0.1.0 for Apple silicon](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.0)** · [All releases](https://github.com/iamdevindeng/tonehop/releases)
 
 ## Download & install (end users)
 
-**Requires an Apple silicon Mac and macOS 27.0 or later.** The app has been verified on macOS 27.0.1; other hardware and macOS versions have not been verified. You do not need Xcode to use the DMG.
+**Requires an Apple silicon Mac and macOS 27.0 or later.** We verified the app on macOS 27.0.1. We have not verified other hardware or macOS versions. You do not need Xcode to use the DMG.
 
-1. Go to the [v0.1.0 release](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.0) and download **`ToneHop-0.1.0-arm64.dmg`**.
-2. If ToneHop is already running, quit it from its menu bar menu and finish any quit confirmation. Open the DMG and drag **ToneHop.app** to **Applications**, replacing the old copy if prompted.
-3. Eject the DMG, then open ToneHop from Applications. Its icon appears in the menu bar; it does not open a main window or change your audio output at startup.
+1. Download **`ToneHop-0.1.0-arm64.dmg`** from the [v0.1.0 release](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.0).
+2. If ToneHop is running, quit it from its menu bar menu.
+3. If ToneHop asks for confirmation, confirm that you want to quit.
+4. Wait for any requested AirPlay cleanup to finish.
+5. Open the DMG.
+6. Drag **ToneHop.app** to **Applications**.
+7. If prompted, replace the old copy.
+8. Eject the DMG.
+9. Open ToneHop from Applications.
 
-**First launch:** this release is ad-hoc signed and **not signed with Developer ID or notarized by Apple**. If macOS blocks it because it cannot verify the developer, first try opening ToneHop, then go to **System Settings → Privacy & Security → Open Anyway** and follow the confirmation. Use this single-app exception only if you trust the download; see [Apple's instructions](https://support.apple.com/en-us/102445). If macOS reports malware or a damaged app, stop and check the download instead.
+The ToneHop icon appears in the menu bar. The app does not open a main window or change your audio output at startup.
+
+**First launch:** this release uses ad-hoc signing. It has **no Developer ID signature or Apple notarization**.
+
+Use these steps only if macOS cannot verify the developer and you trust the download:
+
+1. Try to open ToneHop.
+2. Go to **System Settings → Privacy & Security → Open Anyway**.
+3. Complete the confirmation.
+
+This exception applies only to ToneHop. See [Apple's instructions](https://support.apple.com/en-us/102445). If macOS reports malware or a damaged app, stop. Check the download instead.
 
 <details>
 <summary>Verify the download (optional)</summary>
 
-Download the matching `.sha256` file from the same release and place it beside the DMG. Open Terminal in that folder and run:
+1. Download the matching `.sha256` file from the same release.
+2. Put the `.sha256` file in the same folder as the DMG.
+3. Open Terminal in that folder.
+4. Run this command:
 
 ```sh
 shasum -a 256 -c ToneHop-0.1.0-arm64.dmg.sha256
@@ -36,7 +55,9 @@ The expected result is `ToneHop-0.1.0-arm64.dmg: OK`. Use the filenames for the 
 
 ## Build from source (developers)
 
-Install the full **Xcode 27.0** app with the **macOS 27.0 SDK**, the verified toolchain for this project. The deployment target is macOS 27.0, and the app has no third-party dependencies. Check your active toolchain, then clone the repository:
+Install the full **Xcode 27.0** app with the **macOS 27.0 SDK**. We verified the project with this toolchain. The deployment target is macOS 27.0. The app has no third-party dependencies.
+
+Use the following commands to check your active toolchain and clone the repository:
 
 ```sh
 xcodebuild -version
@@ -46,7 +67,12 @@ git clone https://github.com/iamdevindeng/tonehop.git
 cd tonehop
 ```
 
-Open `ToneHop/ToneHop.xcodeproj` in Xcode and select the `ToneHop` scheme, or use these commands from the repository root:
+To use Xcode:
+
+1. Open `ToneHop/ToneHop.xcodeproj`.
+2. Select the `ToneHop` scheme.
+
+You can also use these commands from the repository root:
 
 ```sh
 ./script/build_and_run.sh --build-only  # Build Debug without stopping or launching the app
@@ -55,14 +81,16 @@ Open `ToneHop/ToneHop.xcodeproj` in Xcode and select the `ToneHop` scheme, or us
 ./script/test.sh                       # Run hosted XCTest with fake audio providers
 ```
 
-Quit another installed copy before running the development app to avoid competing for the shortcut configuration. The test host skips real audio service startup; the tests do not switch the system's audio output. `--verify` checks the process path, not UI or audio behavior.
+Before you run the development app, quit any other installed copy. This prevents multiple copies from using the shortcut configuration at the same time.
 
-The Debug app is written to `build/Build/Products/Debug/ToneHop.app`. Logs and test results stay under `build/`, which is excluded from Git.
+The test host does not start real audio services. The tests do not switch the system's audio output. `--verify` checks the process path. It does not check the interface or audio behavior.
+
+The build creates the Debug app at `build/Build/Products/Debug/ToneHop.app`. Logs and test results stay under `build/`. Git ignores this directory.
 
 <details>
 <summary>Build a Release app or DMG</summary>
 
-From the repository root, create a fresh build directory and build an arm64 Release app:
+Run these commands from the repository root. They create a new build directory and build an arm64 Release app:
 
 ```sh
 mkdir -p build
@@ -79,9 +107,14 @@ xcodebuild -project ToneHop/ToneHop.xcodeproj \
 open "$TONEHOP_DERIVED_DATA/Build/Products/Release"
 ```
 
-The last command opens the build folder. Quit any running ToneHop instance through its menu before copying `ToneHop.app` to Applications. These builds use ad-hoc signing without Developer ID or Apple notarization; the first-launch guidance above also applies to downloaded copies.
+The last command opens the build folder.
 
-To package the built app with the MIT license and a SHA-256 checksum:
+1. Quit any running ToneHop instance through its menu.
+2. Copy `ToneHop.app` to Applications.
+
+These builds use ad-hoc signing. They have no Developer ID signature or Apple notarization. The first-launch instructions above also apply to downloaded copies.
+
+To package the built app with the MIT license and a SHA-256 checksum, run this command:
 
 ```sh
 ./script/package_dmg.sh \
@@ -89,30 +122,82 @@ To package the built app with the MIT license and a SHA-256 checksum:
   "$TONEHOP_DERIVED_DATA/dist/ToneHop-0.1.0-arm64.dmg"
 ```
 
-Packaging does not build or launch the app, and it refuses to overwrite existing output files.
+The packaging script does not build or launch the app. It refuses to overwrite existing output files.
 
 </details>
 
 ## First use
 
-Click the menu bar icon to open the device list, then click a device name to switch output. Starting ToneHop does not change the current output. Right-click the menu bar icon to quit.
+To switch the audio output:
 
-When no shortcut configuration exists, ToneHop assigns **Control + Shift + 1** to the Mac's built-in speakers if it can identify them reliably. Other devices start without shortcuts. You can edit or clear this binding; an existing empty configuration stays empty.
+1. Click the menu bar icon to open the device list.
+2. Click a device name.
 
-To assign a shortcut, click its field and press a key combination containing **Command or Control**. Option and Shift can be added. Press Backspace in the field to clear it, or Escape to cancel. A device being unavailable does not remove its saved shortcut.
+Starting ToneHop does not change the current output.
 
-The interface follows the language macOS selects for ToneHop, with English as the fallback. Choose an app language in macOS settings and restart ToneHop to apply it.
+To quit:
+
+1. Right-click the menu bar icon.
+2. Select **Quit**.
+
+ToneHop assigns **Control + Shift + 1** to the Mac's built-in speakers if both conditions apply:
+
+- No shortcut configuration exists.
+- ToneHop can reliably identify the built-in speakers.
+
+Other devices start without shortcuts. You can change or clear this shortcut. An existing empty configuration stays empty.
+
+To set a shortcut:
+
+1. Click the shortcut field.
+2. Press a key combination that includes **Command or Control**.
+
+The combination can also include Option and Shift. To clear the shortcut, press Backspace in the field. To cancel, press Escape. ToneHop keeps the saved shortcut when the device is unavailable.
+
+The interface uses the language that macOS selects for ToneHop. If that language is unavailable, ToneHop uses English.
+
+To change the language:
+
+1. Select an app language in macOS settings.
+2. Restart ToneHop.
 
 ## AirPlay and other limits
 
-- **AirPlay relies on private APIs.** A system update may change or break discovery, switching, or volume control. The macOS deployment target is not a promise that every AirPlay feature works on every supported OS version.
-- Some AirPlay devices must first be selected in the macOS Sound menu **while ToneHop is running**. Until ToneHop has enough information to switch safely, the device stays disabled in its list.
-- Recovery of an existing AirPlay stream without a previously captured reference is currently enabled **only on macOS 27.0.1**, and only when the required identity and output checks pass. It does not run an automatic output switch at startup.
-- If ToneHop has created an AirPlay stream that needs cleanup, quitting asks to switch to the Mac's built-in speakers and remove that stream. Cancel keeps the app running. ToneHop only removes streams it can confirm it owns; it does not remove streams created by the system or another app. If switching or cleanup cannot be confirmed, it stays open.
-- Volume support depends on the device and the available system controls. Some devices cannot be adjusted in ToneHop. Changing volume does not connect or switch to that device.
-- Switching changes the default media output; it does not also change the system sound-effects output.
-- The current app does not require Accessibility automation or microphone access. It includes a Local Network permission description for device discovery; first-time permission prompts and denied-permission behavior have not been verified on a fresh account.
-- Broader device coverage, sleep and network changes, long sessions, and full accessibility coverage remain unverified. Automated tests do not replace these hardware checks.
+### AirPlay
+
+**AirPlay uses private APIs.** A system update can change or break device discovery, switching, or volume control. The macOS deployment target does not guarantee every AirPlay feature on every supported OS version.
+
+Some AirPlay devices need an initial selection in the macOS Sound menu **while ToneHop is running**. Until ToneHop has enough information to switch safely, the device stays disabled in its list.
+
+ToneHop enables recovery of an existing AirPlay stream without a previously captured reference only when both conditions apply:
+
+- The Mac runs **macOS 27.0.1**. This recovery is disabled on all other versions.
+- The required identity and output checks pass.
+
+This recovery does not automatically switch the output at startup.
+
+If an AirPlay stream created by ToneHop needs cleanup, the app asks for confirmation when you quit. This confirmation covers switching to the Mac's built-in speakers and removing that stream. Cancel keeps the app running.
+
+ToneHop removes only streams that it can confirm it owns. It does not remove streams created by the system or another app. If ToneHop cannot confirm switching or cleanup, it stays open.
+
+### Volume and output
+
+Volume support depends on the device and the available system controls. ToneHop cannot adjust the volume of some devices. Changing volume does not connect or switch to that device.
+
+Switching changes the default media output. It does not change the system sound-effects output.
+
+### Permissions and verification
+
+The current app does not require Accessibility automation or microphone access. It includes a Local Network permission description for device discovery. We have not verified first-time permission prompts or behavior after permission denial on a fresh account.
+
+We have not verified the following:
+
+- Broader device coverage.
+- Sleep and network changes.
+- Long sessions.
+- Full accessibility coverage.
+
+Automated tests do not replace these hardware checks.
 
 ## License
 
