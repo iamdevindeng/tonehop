@@ -13,37 +13,22 @@ ToneHop is a native macOS menu bar app. Use it to switch audio output devices, a
 
 ## Download & install (end users)
 
-**Requires an Apple silicon Mac and macOS 27.0 or later.** We verified the app on macOS 27.0.1. We have not verified other hardware or macOS versions. You do not need Xcode to use the DMG.
+Go to [Releases](https://github.com/iamdevindeng/tonehop/releases) and download:
 
-1. Download **`ToneHop-0.1.0-arm64.dmg`** from the [v0.1.0 release](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.0).
-2. If ToneHop is running, quit it from its menu bar menu.
-3. If ToneHop asks for confirmation, confirm that you want to quit.
-4. Wait for any requested AirPlay cleanup to finish.
-5. Open the DMG.
-6. Drag **ToneHop.app** to **Applications**.
-7. If prompted, replace the old copy.
-8. Eject the DMG.
-9. Open ToneHop from Applications.
+- **macOS (Apple silicon):** [`ToneHop-0.1.0-arm64.dmg`](https://github.com/iamdevindeng/tonehop/releases/download/v0.1.0/ToneHop-0.1.0-arm64.dmg).
 
-The ToneHop icon appears in the menu bar. The app does not open a main window or change your audio output at startup.
+**Requirements:** macOS **27.0 or later** on Apple silicon. Only macOS 27.0.1 has been verified; other macOS versions and hardware remain unverified. Xcode is not required.
 
-**First launch:** this release uses ad-hoc signing. It has **no Developer ID signature or Apple notarization**.
+**Install or update:** If ToneHop is running, quit it from its menu bar menu. Complete any quit confirmation and wait for requested AirPlay cleanup to finish. Open the DMG and drag **ToneHop.app** to **Applications**. Replace the old copy when prompted. Eject the DMG, then open ToneHop from Applications.
 
-Use these steps only if macOS cannot verify the developer and you trust the download:
+**First launch:** This release uses ad-hoc signing, with **no Developer ID signature or Apple notarization**. If macOS cannot verify the developer and you trust the download, try opening ToneHop first. Then go to **System Settings → Privacy & Security → Open Anyway** and confirm **Open**. This exception applies only to ToneHop. See [Apple's instructions](https://support.apple.com/en-us/102445). If macOS reports malware or a damaged app, stop and check the download.
 
-1. Try to open ToneHop.
-2. Go to **System Settings → Privacy & Security → Open Anyway**.
-3. Complete the confirmation.
-
-This exception applies only to ToneHop. See [Apple's instructions](https://support.apple.com/en-us/102445). If macOS reports malware or a damaged app, stop. Check the download instead.
+ToneHop runs in the menu bar. It does not open a main window or change your audio output at startup. See [First use](#first-use) for device controls and shortcuts.
 
 <details>
 <summary>Verify the download (optional)</summary>
 
-1. Download the matching `.sha256` file from the same release.
-2. Put the `.sha256` file in the same folder as the DMG.
-3. Open Terminal in that folder.
-4. Run this command:
+Download the matching `.sha256` file from the same release and put it beside the DMG. Open Terminal in that folder and run:
 
 ```sh
 shasum -a 256 -c ToneHop-0.1.0-arm64.dmg.sha256
@@ -55,37 +40,31 @@ The expected result is `ToneHop-0.1.0-arm64.dmg: OK`. Use the filenames for the 
 
 ## Build from source (developers)
 
-Install the full **Xcode 27.0** app with the **macOS 27.0 SDK**. We verified the project with this toolchain. The deployment target is macOS 27.0. The app has no third-party dependencies.
+The native project is `ToneHop/ToneHop.xcodeproj`, with the `ToneHop` scheme. Install the full **Xcode 27.0** app with the **macOS 27.0 SDK**, the verified toolchain for this project. The deployment target is macOS 27.0. No third-party dependencies are required.
 
-Use the following commands to check your active toolchain and clone the repository:
+Quit any other installed copy before you run the development app, so the copies do not compete for the shortcut configuration.
 
 ```sh
+# Check the active toolchain
 xcodebuild -version
 xcrun --sdk macosx --show-sdk-version
 
+# Clone the repository
 git clone https://github.com/iamdevindeng/tonehop.git
 cd tonehop
-```
 
-To use Xcode:
-
-1. Open `ToneHop/ToneHop.xcodeproj`.
-2. Select the `ToneHop` scheme.
-
-You can also use these commands from the repository root:
-
-```sh
+# Build, run, and test from the repository root
 ./script/build_and_run.sh --build-only  # Build Debug without stopping or launching the app
 ./script/build_and_run.sh              # Build and launch/restart this checkout's app
 ./script/build_and_run.sh --verify     # Also verify the launched process path
 ./script/test.sh                       # Run hosted XCTest with fake audio providers
 ```
 
-Before you run the development app, quit any other installed copy. This prevents multiple copies from using the shortcut configuration at the same time.
+You can also open the project in Xcode and select the `ToneHop` scheme.
 
-The test host does not start real audio services. The tests do not switch the system's audio output. `--verify` checks the process path. It does not check the interface or audio behavior.
+**Output:** `build/Build/Products/Debug/ToneHop.app`. Logs and test results stay under `build/`, which Git ignores.
 
-The build creates the Debug app at `build/Build/Products/Debug/ToneHop.app`. Logs and test results stay under `build/`. Git ignores this directory.
+**Verification:** `--verify` checks the process path, not the interface or audio behavior. Tests use fake audio providers. The test host does not start real audio services or switch the system's audio output.
 
 <details>
 <summary>Build a Release app or DMG</summary>
