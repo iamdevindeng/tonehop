@@ -13,22 +13,41 @@ ToneHop 是一款原生 macOS 菜单栏应用。你可以用它切换音频输�
 
 ## 下载与安装（普通用户）
 
-前往[发布页面](https://github.com/iamdevindeng/tonehop/releases)，下载对应安装包：
+前往[发布页面](https://github.com/iamdevindeng/tonehop/releases)下载安装包：
 
-- **macOS（Apple 芯片）：** [`ToneHop-0.1.0-arm64.dmg`](https://github.com/iamdevindeng/tonehop/releases/download/v0.1.0/ToneHop-0.1.0-arm64.dmg)。
+- **macOS · Apple 芯片：** [ToneHop-0.1.0-arm64.dmg](https://github.com/iamdevindeng/tonehop/releases/download/v0.1.0/ToneHop-0.1.0-arm64.dmg)
 
-**系统要求：** 搭载 Apple 芯片的 Mac，以及 macOS **27.0 或更高版本**。目前仅验证了 macOS 27.0.1；其他 macOS 版本和硬件尚未验证。无需安装 Xcode。
+需要搭载 **Apple 芯片的 Mac**，以及 **macOS 27.0 或更高版本**。无需安装 Xcode。
+此版本已在 macOS 27.0.1 上测试。其他 macOS 版本和硬件尚未验证。
 
-**安装或更新：** 如果 ToneHop 正在运行，请通过菜单栏菜单退出。完成可能出现的退出确认，并等待所需的 AirPlay 清理完成。打开 DMG，将 **ToneHop.app** 拖入 **Applications（应用程序）**。如果提示已有旧版本，请替换。推出 DMG 后，从“应用程序”打开 ToneHop。
+### 安装或更新
 
-**首次启动：** 此版本采用临时签名（ad-hoc），**未经 Developer ID 签名，也未经 Apple 公证**。如果 macOS 无法验证开发者，且你信任下载来源，请先尝试打开 ToneHop。然后前往 **系统设置 → 隐私与安全性 → 仍要打开**，并确认**打开**。此例外仅适用于 ToneHop。详见 [Apple 的说明](https://support.apple.com/zh-cn/102445)。如果 macOS 提示存在恶意软件或应用已损坏，请停止操作，检查下载文件。
+如果 ToneHop 正在运行，请先通过菜单栏菜单退出。若出现退出确认，请按提示确认。
+如需清理 AirPlay 流，请等待清理完成后再替换应用。
 
-ToneHop 在菜单栏中运行。启动时不会打开主窗口，也不会更改音频输出。设备控制和快捷键说明见[初次使用](#初次使用)。
+1. 打开下载的 DMG。
+2. 将 **ToneHop.app** 拖入 **Applications（应用程序）**。如果提示已有旧版本，请替换。
+3. 推出 DMG。从“应用程序”打开 **ToneHop**。
+
+ToneHop 在菜单栏中运行。启动时不会打开主窗口，也不会更改音频输出。
+设备控制和快捷键说明见[初次使用](#初次使用)。
+
+### macOS 阻止打开应用时
+
+此版本采用临时签名（ad-hoc），未经 Developer ID 签名，也未经 Apple 公证。
+
+如果 macOS 提示无法验证开发者，且你信任下载来源，请按以下步骤操作：
+
+1. 在 **系统设置 → 隐私与安全性** 中，找到 ToneHop 的提示并点击 **仍要打开**。
+2. 点击 **打开**，确认启动。
+
+此例外仅适用于 ToneHop。详见 [Apple 的说明](https://support.apple.com/zh-cn/102445)。
+如果 macOS 提示存在恶意软件或应用已损坏，请停止操作，检查下载文件。
 
 <details>
 <summary>验证下载文件（可选）</summary>
 
-从同一发布页面下载配套的 `.sha256` 文件，并将其与 DMG 放在同一文件夹中。在该文件夹中打开终端，运行：
+从同一发布页面下载配套的 `.sha256` 文件。将它与 DMG 放在同一文件夹中。在该文件夹中打开终端，运行以下命令：
 
 ```sh
 shasum -a 256 -c ToneHop-0.1.0-arm64.dmg.sha256
@@ -40,31 +59,53 @@ shasum -a 256 -c ToneHop-0.1.0-arm64.dmg.sha256
 
 ## 从源码构建（开发者）
 
-原生工程位于 `ToneHop/ToneHop.xcodeproj`，使用 `ToneHop` scheme。请安装包含 **macOS 27.0 SDK** 的完整 **Xcode 27.0** 应用，这是本项目已验证的工具链。最低部署目标为 macOS 27.0，无需第三方依赖。
+请安装包含 **macOS 27.0 SDK** 的完整 **Xcode 27.0** 应用。这是本项目已验证的工具链。
+最低部署目标为 macOS 27.0。应用没有第三方依赖。
 
-运行开发版应用前，请先退出已安装的其他副本，避免多个副本争用快捷键配置。
+运行开发版前，请先退出已安装的其他 ToneHop 版本，避免两个实例同时使用快捷键配置。
+
+在终端中运行以下命令：
 
 ```sh
 # 检查当前启用的工具链
 xcodebuild -version
 xcrun --sdk macosx --show-sdk-version
 
-# 克隆仓库
+# 获取源码
 git clone https://github.com/iamdevindeng/tonehop.git
 cd tonehop
 
-# 在仓库根目录构建、运行和测试
-./script/build_and_run.sh --build-only  # 构建 Debug，不停止或启动应用
-./script/build_and_run.sh              # 构建并启动或重启当前检出目录中的应用
-./script/build_and_run.sh --verify     # 同时验证已启动进程的路径
-./script/test.sh                       # 使用模拟音频提供方，在宿主中运行 XCTest
+# 构建、启动应用，并检查进程路径
+./script/build_and_run.sh --verify
 ```
 
-你也可以在 Xcode 中打开工程，并选择 `ToneHop` scheme。
+`--verify` 仅检查已启动进程的路径。
 
-**输出路径：** `build/Build/Products/Debug/ToneHop.app`。日志和测试结果保存在 `build/` 下，Git 会忽略此目录。
+也可以在 Xcode 中打开 `ToneHop/ToneHop.xcodeproj`，选择 `ToneHop` scheme。
 
-**验证范围：** `--verify` 检查进程路径，不验证界面或音频行为。测试使用模拟音频提供方。测试宿主不会启动真实音频服务，也不会切换系统音频输出。
+- **应用路径：** `build/Build/Products/Debug/ToneHop.app`
+- **日志与测试结果：** `build/`（Git 已忽略此目录）
+
+<details>
+<summary>构建选项与测试</summary>
+
+在仓库根目录按需运行以下命令：
+
+```sh
+# 构建 Debug，不停止或启动应用
+./script/build_and_run.sh --build-only
+
+# 构建并启动或重启当前源码目录中的应用
+./script/build_and_run.sh
+
+# 使用模拟音频服务，在宿主中运行 XCTest
+./script/test.sh
+```
+
+`--verify` 检查进程路径，不验证界面或音频行为。
+测试使用模拟音频服务。测试宿主不会启动真实音频服务，也不会切换系统音频输出。
+
+</details>
 
 <details>
 <summary>构建 Release 应用或 DMG</summary>
