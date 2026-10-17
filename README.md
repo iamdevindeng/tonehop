@@ -1,5 +1,7 @@
 # ToneHop
 
+**English** | [简体中文](README.zh-CN.md)
+
 A native macOS menu bar app for switching audio output devices, setting device volume, and assigning global keyboard shortcuts. Built with SwiftUI, AppKit, and Core Audio.
 
 - Choose an output from the menu bar and see the result confirmed by the system.
