@@ -21,6 +21,9 @@ if [[ "$#" -ne 2 ]]; then
   exit 2
 fi
 [[ "$(/usr/bin/uname -s)" == Darwin ]] || fail 'DMG packaging requires macOS.'
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
+LICENSE_FILE="$PROJECT_ROOT/LICENSE"
+[[ -f "$LICENSE_FILE" ]] || fail 'Repository LICENSE file is missing.'
 [[ -d "$1" ]] || fail "App bundle does not exist: $1"
 APP_BUNDLE="$(cd "$1" && pwd -P)"
 [[ "${APP_BUNDLE##*/}" == ToneHop.app ]] || fail 'Input must be ToneHop.app.'
@@ -121,6 +124,7 @@ STAGING_DIR="$WORK_DIR/staging"
 /usr/bin/codesign --verify --deep --strict --verbose=2 "$STAGING_DIR/ToneHop.app" \
   || fail 'Staged app signature is invalid.'
 /bin/ln -s /Applications "$STAGING_DIR/Applications"
+/bin/cp "$LICENSE_FILE" "$STAGING_DIR/LICENSE"
 /usr/bin/hdiutil create -volname ToneHop -srcfolder "$STAGING_DIR" \
   -fs HFS+ -format UDZO "$WORK_DIR/ToneHop.dmg"
 /usr/bin/hdiutil verify "$WORK_DIR/ToneHop.dmg"
