@@ -22,8 +22,8 @@ ToneHop 是一款原生 macOS 菜单栏应用。你可以用它切换音频输�
 
 ### 安装或更新
 
-如果 ToneHop 正在运行，请先通过菜单栏菜单退出。若出现退出确认，请按提示确认。
-如需清理 AirPlay 流，请等待清理完成后再替换应用。
+如果 ToneHop 正在运行，请先右键点击菜单栏图标，选择**退出**。若出现退出确认，请按提示确认。
+如果退出时开始清理 AirPlay 流，请等待清理完成后再替换应用。
 
 1. 打开下载的 DMG。
 2. 将 **ToneHop.app** 拖入 **Applications（应用程序）**。如果提示已有旧版本，请替换。
@@ -53,7 +53,7 @@ ToneHop 在菜单栏中运行。启动时不会打开主窗口，也不会更改
 shasum -a 256 -c ToneHop-0.1.0-arm64.dmg.sha256
 ```
 
-预期结果为 `ToneHop-0.1.0-arm64.dmg: OK`。请使用与你下载版本对应的文件名。
+预期结果为 `ToneHop-0.1.0-arm64.dmg: OK`。请使用与你下载的版本对应的文件名。
 
 </details>
 
@@ -129,10 +129,10 @@ open "$TONEHOP_DERIVED_DATA/Build/Products/Release"
 
 最后一条命令会打开构建文件夹。
 
-1. 通过菜单退出所有正在运行的 ToneHop 实例。
+1. 右键点击每个 ToneHop 菜单栏图标，选择**退出**。
 2. 将 `ToneHop.app` 复制到“应用程序”。
 
-这些构建采用临时签名，未经 Developer ID 签名或 Apple 公证。上文的首次启动说明也适用于下载的副本。
+这些构建采用临时签名，未经 Developer ID 签名或 Apple 公证。上文的首次启动说明同样适用于这里构建出的副本。
 
 运行以下命令，将构建好的应用与 MIT 许可证打包，并生成 SHA-256 校验文件：
 
@@ -160,10 +160,10 @@ open "$TONEHOP_DERIVED_DATA/Build/Products/Release"
 1. 右键点击菜单栏图标。
 2. 选择**退出**。
 
-如果同时满足以下条件，ToneHop 会为 Mac 的内置扬声器分配 **Control + Shift + 1**：
+如果同时满足以下条件，ToneHop 会为 Mac 自带扬声器分配 **Control + Shift + 1**：
 
 - 尚无快捷键配置。
-- ToneHop 能可靠识别内置扬声器。
+- ToneHop 能可靠识别 Mac 自带扬声器。
 
 其他设备默认没有快捷键。你可以修改或清除此快捷键。已有的空配置会保持为空。
 
@@ -189,14 +189,14 @@ open "$TONEHOP_DERIVED_DATA/Build/Products/Release"
 
 部分 AirPlay 设备需要先在 **ToneHop 运行期间**，通过 macOS 的“声音”菜单选择一次。在 ToneHop 获得足够信息以安全切换之前，该设备会在列表中保持禁用状态。
 
-在未事先捕获引用的情况下，ToneHop 仅在同时满足以下条件时启用已有 AirPlay 流的恢复：
+尚未持有先前捕获的设备或音频流参照时，ToneHop 仅在同时满足以下条件时才会恢复已有的 AirPlay 流：
 
 - Mac 运行 **macOS 27.0.1**。其他版本均未启用此恢复机制。
 - 所需的身份与输出检查通过。
 
 此恢复机制不会在启动时自动切换输出。
 
-如果 ToneHop 创建的 AirPlay 流需要清理，应用会在退出时要求确认。确认内容包括切换到 Mac 的内置扬声器，并移除该流。取消后应用会继续运行。
+如果 ToneHop 创建的 AirPlay 流需要清理，应用会在退出时要求确认。确认内容包括切换到 Mac 自带扬声器，并移除该流。取消后应用会继续运行。
 
 ToneHop 只会移除能确认由自身创建的流。它不会移除系统或其他应用创建的流。如果无法确认切换或清理完成，ToneHop 会保持运行。
 

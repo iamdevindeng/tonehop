@@ -22,8 +22,8 @@ We tested this release on macOS 27.0.1. Other macOS versions and hardware remain
 
 ### Install or update
 
-If ToneHop is running, quit it from its menu bar menu. Complete any quit confirmation.
-Wait for requested AirPlay cleanup to finish before you replace the app.
+If ToneHop is running, right-click the menu bar icon and select **Quit**. Complete any quit confirmation.
+If quitting starts an AirPlay cleanup, wait until it finishes before you replace the app.
 
 1. Open the downloaded DMG.
 2. Drag **ToneHop.app** to **Applications**. If prompted, replace the old copy.
@@ -130,10 +130,10 @@ open "$TONEHOP_DERIVED_DATA/Build/Products/Release"
 
 The last command opens the build folder.
 
-1. Quit any running ToneHop instance through its menu.
+1. Right-click each ToneHop menu bar icon and select **Quit**.
 2. Copy `ToneHop.app` to Applications.
 
-These builds use ad-hoc signing. They have no Developer ID signature or Apple notarization. The first-launch instructions above also apply to downloaded copies.
+These builds use ad-hoc signing. They have no Developer ID signature or Apple notarization. The first-launch instructions above also apply to copies you build here.
 
 To package the built app with the MIT license and a SHA-256 checksum, run this command:
 
