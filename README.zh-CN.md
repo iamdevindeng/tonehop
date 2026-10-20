@@ -11,6 +11,10 @@ ToneHop 是一款原生 macOS 菜单栏应用。你可以用它切换音频输�
 
 **[下载适用于 Apple 芯片的 ToneHop v0.1.0](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.0)** · [所有版本](https://github.com/iamdevindeng/tonehop/releases)
 
+<p align="center">
+  <img src="docs/images/tonehop-menu.png" width="328" alt="ToneHop 英文界面：音频输出设备列表、音量控制和快捷键">
+</p>
+
 ## 下载与安装（普通用户）
 
 前往[发布页面](https://github.com/iamdevindeng/tonehop/releases)下载安装包：

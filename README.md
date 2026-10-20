@@ -11,6 +11,10 @@ ToneHop is a native macOS menu bar app. Use it to switch audio output devices, a
 
 **[Download ToneHop v0.1.0 for Apple silicon](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.0)** · [All releases](https://github.com/iamdevindeng/tonehop/releases)
 
+<p align="center">
+  <img src="docs/images/tonehop-menu.png" width="328" alt="ToneHop device list with volume controls and keyboard shortcuts">
+</p>
+
 ## Download & install (end users)
 
 Download the app from [Releases](https://github.com/iamdevindeng/tonehop/releases):
