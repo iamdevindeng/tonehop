@@ -59,15 +59,15 @@ final class StatusBarController: NSObject {
         self.store = store
         self.interactions = interactions
         self.quitMenu = quitMenu
-        self.statusItem = statusItem ?? NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        self.statusItem = statusItem ?? NSStatusBar.system.statusItem(withLength: StatusBarImageRenderer.itemLength)
         let content = NSHostingController(rootView: OutputDevicesView(store: store, interactions: interactions))
         self.popover = GlassPanelHost(content: content)
         super.init()
 
+        self.statusItem.length = StatusBarImageRenderer.itemLength
         if statusItem == nil { self.statusItem.autosaveName = "ToneHop.Output" }
         if let button = self.statusItem.button {
-            button.image = NSImage(systemSymbolName: "speaker.wave.2.fill", accessibilityDescription: "ToneHop")
-            button.image?.isTemplate = true
+            button.imagePosition = .imageOnly
             button.toolTip = String(localized: "ui.status.tooltip", defaultValue: "ToneHop · Sound Output")
             button.setAccessibilityLabel(String(localized: "ui.status.label", defaultValue: "ToneHop, Sound Output"))
             // Own the toggle through the public button action. On this system,
@@ -104,6 +104,10 @@ final class StatusBarController: NSObject {
         NSWorkspace.shared.notificationCenter.addObserver(
             self, selector: #selector(dismissForFocusChange),
             name: NSWorkspace.activeSpaceDidChangeNotification, object: nil
+        )
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self, selector: #selector(accessibilityDisplayOptionsChanged),
+            name: NSWorkspace.accessibilityDisplayOptionsDidChangeNotification, object: nil
         )
         observePresentation()
         logger.info("Menu bar ready: r08-glass-panel")
@@ -385,27 +389,26 @@ final class StatusBarController: NSObject {
         renderStatusIcon()
     }
 
+    @objc private func accessibilityDisplayOptionsChanged() {
+        renderStatusIcon()
+    }
+
     private func renderStatusIcon() {
         guard !stopped else { return }
         let current = store.devices.first { $0.id == store.currentDeviceID }
-        let speaker = NSImage(systemSymbolName: DeviceIconRendering.symbolName(for: current?.icon ?? .fallback),
-                              accessibilityDescription: nil)
-            ?? NSImage(systemSymbolName: "speaker.wave.2.fill", accessibilityDescription: nil)
-        if warningMessage != nil {
-            let badge = NSImage(systemSymbolName: "exclamationmark.circle.fill", accessibilityDescription: nil)
-            let symbol = NSImage(size: NSSize(width: 20, height: 18), flipped: false) { _ in
-                speaker?.draw(in: NSRect(x: 0, y: 2, width: 15, height: 14))
-                badge?.draw(in: NSRect(x: 12, y: 0, width: 8, height: 8))
-                return true
-            }
-            symbol.isTemplate = true
-            statusItem.button?.image = symbol
-        } else {
-            speaker?.isTemplate = true
-            statusItem.button?.image = speaker
-        }
+        let volume = interactions?.volume
+        let presentation = StatusBarVolumePresentation(
+            device: current, state: current.flatMap { volume?.state(for: $0.id) },
+            isPaused: volume?.isPaused == true, isClosed: volume?.isClosed == true
+        )
+        statusItem.button?.image = StatusBarImageRenderer.image(
+            deviceIcon: current?.icon ?? .fallback, content: presentation.content,
+            hasWarning: warningMessage != nil,
+            increasedContrast: NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+        )
         let output = current?.name ?? String(localized: "ui.status.unconfirmed", defaultValue: "Current output is not yet confirmed")
-        statusItem.button?.toolTip = [output, warningMessage].compactMap { $0 }.joined(separator: "\n")
+        statusItem.button?.toolTip = [output, presentation.help, warningMessage].compactMap { $0 }.joined(separator: "\n")
+        statusItem.button?.setAccessibilityValue(presentation.help)
         statusItem.button?.setAccessibilityLabel(warningMessage == nil
             ? String(localized: "ui.status.output", defaultValue: "ToneHop, \(output)")
             : String(localized: "ui.status.output_warning", defaultValue: "ToneHop, \(output), open to view the message"))

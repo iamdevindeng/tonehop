@@ -22,9 +22,10 @@ fi
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 PROJECT_FILE="$PROJECT_ROOT/ToneHop/ToneHop.xcodeproj"
 BUILD_ROOT="$PROJECT_ROOT/build"
+DERIVED_DATA_PATH="$BUILD_ROOT/DerivedData.noindex"
 APP_NAME="ToneHop"
 BUNDLE_ID="com.dengziyi.ToneHop"
-APP_BUNDLE="$BUILD_ROOT/Build/Products/Debug/$APP_NAME.app"
+APP_BUNDLE="$DERIVED_DATA_PATH/Build/Products/Debug/$APP_NAME.app"
 APP_BINARY="$APP_BUNDLE/Contents/MacOS/$APP_NAME"
 
 # Verify the executable's full path before sending any signal. An older
@@ -83,6 +84,8 @@ wait_for_project_process() {
 
 # A build-only call must never stop or launch an app.
 if [[ "$MODE" != --build-only ]]; then
+  # Also close this checkout's previous output when moving to .noindex.
+  stop_project_instances "$APP_NAME" "$BUILD_ROOT/Build/Products/Debug/$APP_NAME.app/Contents/MacOS/$APP_NAME"
   stop_project_instances "$APP_NAME" "$APP_BINARY"
 fi
 
@@ -95,7 +98,7 @@ printf 'Building ToneHop; log: %s\n' "$BUILD_LOG"
   -configuration Debug \
   -sdk macosx \
   -destination 'platform=macOS' \
-  -derivedDataPath "$BUILD_ROOT" \
+  -derivedDataPath "$DERIVED_DATA_PATH" \
   -quiet build 2>&1 | /usr/bin/tee "$BUILD_LOG"
 
 [[ -x "$APP_BINARY" ]] || {

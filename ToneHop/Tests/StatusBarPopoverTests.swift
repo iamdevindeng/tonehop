@@ -224,12 +224,12 @@ final class StatusBarPopoverTests: XCTestCase {
         let controller = StatusBarController(store: store, statusItem: item)
         defer { controller.stop(); store.stop() }
         let button = try XCTUnwrap(item.button)
-        XCTAssertEqual(button.toolTip, expectedLocalized("Current output is not yet confirmed", "当前声音输出待确认"))
+        XCTAssertEqual(button.toolTip, unconfirmedOutputTooltip)
         store.refresh()
-        await waitUntil("confirmed output reaches menu tooltip") { button.toolTip == "Test speaker" }
+        await waitUntil("confirmed output reaches menu tooltip") { button.toolTip == self.speakerTooltip }
         hardware.current = false
         store.refresh()
-        await waitUntil("unconfirmed output restores fallback tooltip") { button.toolTip == expectedLocalized("Current output is not yet confirmed", "当前声音输出待确认") }
+        await waitUntil("unconfirmed output restores fallback tooltip") { button.toolTip == self.unconfirmedOutputTooltip }
         XCTAssertTrue(hardware.selectedUIDs.isEmpty)
     }
 
@@ -241,14 +241,14 @@ final class StatusBarPopoverTests: XCTestCase {
         defer { controller.stop(); store.stop() }
         let button = try XCTUnwrap(item.button)
         store.refresh()
-        await waitUntil("current output ready") { button.toolTip == "Test speaker" }
+        await waitUntil("current output ready") { button.toolTip == self.speakerTooltip }
         let absent = AudioTargetIdentity.hal(uid: "missing-menu-test")
         store.select(target: absent, request: .init(origin: .pointer))
         await waitUntil("new failure warns at menu bar") { button.toolTip?.contains(expectedLocalized("The device is offline", "设备已离线")) == true }
         button.performClick(nil)
-        await waitUntil("opening restores current-output icon") { button.toolTip == "Test speaker" }
+        await waitUntil("opening restores current-output icon") { button.toolTip == self.speakerTooltip }
         try await Task.sleep(for: .milliseconds(100))
-        XCTAssertEqual(button.toolTip, "Test speaker", "Preserved cause must not be replayed by opening refresh")
+        XCTAssertEqual(button.toolTip, speakerTooltip, "Preserved cause must not be replayed by opening refresh")
         XCTAssertEqual(store.feedbackKind, .failure)
         store.select(target: absent, request: .init(origin: .pointer))
         await waitUntil("same explicit failure alerts a second time") { button.toolTip?.contains(expectedLocalized("The device is offline", "设备已离线")) == true }
@@ -295,6 +295,16 @@ final class StatusBarPopoverTests: XCTestCase {
         await waitUntil("fourth click closes the reopened popover") { !reopenedWindow.isVisible }
         XCTAssertTrue(hardware.selectedUIDs.isEmpty, "Opening and closing must not change audio output.")
         XCTAssertTrue(routes.selectedIdentifiers.isEmpty)
+    }
+
+    private var speakerTooltip: String {
+        // These popover fixtures intentionally omit a volume coordinator.
+        "Test speaker\n" + expectedLocalized("Reading volume…", "正在读取音量…")
+    }
+
+    private var unconfirmedOutputTooltip: String {
+        expectedLocalized("Current output is not yet confirmed", "当前声音输出待确认") + "\n"
+            + expectedLocalized("Volume unavailable until the current output is confirmed", "确认当前输出后才能显示音量")
     }
 
     private func newPopoverWindow(excluding visibleIDs: Set<ObjectIdentifier>, anchor: NSWindow?) -> NSWindow? {

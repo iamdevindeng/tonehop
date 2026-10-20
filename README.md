@@ -84,7 +84,7 @@ The `--verify` option checks only the launched process path.
 
 To use Xcode, open `ToneHop/ToneHop.xcodeproj`. Select the `ToneHop` scheme.
 
-- **App:** `build/Build/Products/Debug/ToneHop.app`
+- **App built by the script:** `build/DerivedData.noindex/Build/Products/Debug/ToneHop.app`
 - **Logs and test results:** `build/` (ignored by Git)
 
 <details>
@@ -114,8 +114,8 @@ Tests use fake audio providers. The test host does not start real audio services
 Run these commands from the repository root. They create a new build directory and build an arm64 Release app:
 
 ```sh
-mkdir -p build
-TONEHOP_DERIVED_DATA="$(mktemp -d "$PWD/build/source-release.XXXXXX")"
+mkdir -p build/Release.noindex
+TONEHOP_DERIVED_DATA="$(mktemp -d "$PWD/build/Release.noindex/source-release.XXXXXX")"
 xcodebuild -project ToneHop/ToneHop.xcodeproj \
   -scheme ToneHop -configuration Release -sdk macosx \
   -destination 'platform=macOS' \

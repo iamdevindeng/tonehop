@@ -4087,6 +4087,204 @@
       },
       "extractionState": "manual"
     },
+    "ui.status.volume.confirming": {
+      "comment": "Menu bar volume help while switching, recovering, or otherwise paused. No old volume value is displayed.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirming volume…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在确认音量…"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.volume.current_unconfirmed": {
+      "comment": "Menu bar volume help when the actual current output device is not yet confirmed.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume unavailable until the current output is confirmed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "确认当前输出后才能显示音量"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.volume.identity_unconfirmed": {
+      "comment": "Menu bar volume help when the volume evidence cannot be matched to the current device.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume unavailable until the device is confirmed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "确认设备后才能显示音量"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.volume.mixed_mute": {
+      "comment": "Menu bar volume help: only some output channels are muted. Do not describe this as complete silence.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some channels are muted"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "部分声道已静音"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.volume.mute_unavailable": {
+      "comment": "Menu bar volume help when the device exposes no mute state. A readable volume percentage is still shown.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mute status is unavailable"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取静音状态"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.volume.mute_unknown": {
+      "comment": "Menu bar volume help when the system mute state cannot be confirmed. Do not imply the device is unmuted.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mute status is unconfirmed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "静音状态待确认"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.volume.muted_unavailable": {
+      "comment": "Menu bar mute icon help when full mute is confirmed but no volume scalar can be read.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muted; volume unavailable"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已静音；音量不可读"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.volume.muted_value": {
+      "comment": "Menu bar mute icon help. Argument is the rounded system volume setting from 0 to 100; mute does not change this value to zero. %% is a literal percent sign.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muted; volume setting %lld%%"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已静音；设定音量 %lld%%"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.volume.unavailable": {
+      "comment": "Menu bar dash help when the current device is known but its system volume cannot be read.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume unavailable"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音量不可读"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.volume.unsupported": {
+      "comment": "Menu bar dash help when the device provides no system volume scalar control.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This device does not provide a system volume value"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此设备不提供系统音量值"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "ui.status.volume.value": {
+      "comment": "Menu bar volume help. Argument is the rounded confirmed system volume scalar expressed from 0 to 100; it is not loudness or battery level. %% is a literal percent sign.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume %lld%%"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音量 %lld%%"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
     "ui.volume.connect": {
       "comment": "User-visible ToneHop text. Preserve device names supplied as arguments.",
       "localizations": {

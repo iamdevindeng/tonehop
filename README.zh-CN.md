@@ -83,7 +83,7 @@ cd tonehop
 
 也可以在 Xcode 中打开 `ToneHop/ToneHop.xcodeproj`，选择 `ToneHop` scheme。
 
-- **应用路径：** `build/Build/Products/Debug/ToneHop.app`
+- **脚本构建的应用：** `build/DerivedData.noindex/Build/Products/Debug/ToneHop.app`
 - **日志与测试结果：** `build/`（Git 已忽略此目录）
 
 <details>
@@ -113,8 +113,8 @@ cd tonehop
 在仓库根目录运行以下命令。命令会创建新的构建目录，并构建 arm64 Release 应用：
 
 ```sh
-mkdir -p build
-TONEHOP_DERIVED_DATA="$(mktemp -d "$PWD/build/source-release.XXXXXX")"
+mkdir -p build/Release.noindex
+TONEHOP_DERIVED_DATA="$(mktemp -d "$PWD/build/Release.noindex/source-release.XXXXXX")"
 xcodebuild -project ToneHop/ToneHop.xcodeproj \
   -scheme ToneHop -configuration Release -sdk macosx \
   -destination 'platform=macOS' \

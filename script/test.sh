@@ -9,6 +9,7 @@ fi
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 BUILD_ROOT="$PROJECT_ROOT/build"
+DERIVED_DATA_PATH="$BUILD_ROOT/DerivedData.noindex"
 RESULT_STAMP="$(date '+%Y%m%d-%H%M%S')-$$"
 RESULT_BUNDLE="$BUILD_ROOT/TestResults/ToneHop-$RESULT_STAMP.xcresult"
 TEST_LOG="$BUILD_ROOT/logs/test-$RESULT_STAMP.log"
@@ -24,7 +25,7 @@ export TONEHOP_TESTING=1
   -configuration Debug \
   -sdk macosx \
   -destination 'platform=macOS' \
-  -derivedDataPath "$BUILD_ROOT" \
+  -derivedDataPath "$DERIVED_DATA_PATH" \
   -resultBundlePath "$RESULT_BUNDLE" \
   -parallel-testing-enabled NO \
   test "$@" 2>&1 | /usr/bin/tee "$TEST_LOG"
