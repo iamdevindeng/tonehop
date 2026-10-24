@@ -49,7 +49,7 @@ final class GlobalShortcutService: GlobalShortcutRegistering {
     private var pendingCleanup: [UInt32: DeviceShortcut] = [:]
     private var deliveryEnabled = true
     private var closed = false
-    private var recordingReleaseTask: Task<Void, Never>?
+    private var physicalReleaseTask: Task<Void, Never>?
 
     init(runtime: any ShortcutHotKeyRuntime = CarbonShortcutRuntime()) {
         self.runtime = runtime
@@ -84,7 +84,7 @@ final class GlobalShortcutService: GlobalShortcutRegistering {
         // That same gesture must not immediately become an audio selection.
         entries[eventID] = Entry(registration: registration, shortcut: shortcut,
                                  keyState: runtime.isKeyPressed(shortcut.keyCode) ? .awaitingRecordingRelease : .ready)
-        updateRecordingReleaseObservation()
+        updatePhysicalReleaseObservation()
         return registration
     }
 
@@ -92,7 +92,7 @@ final class GlobalShortcutService: GlobalShortcutRegistering {
         guard let id = entries.first(where: { $0.value.registration == registration })?.key,
               let entry = entries[id] else { return }
         entries[id] = nil // Invalidate before the system call, including failure.
-        updateRecordingReleaseObservation()
+        updatePhysicalReleaseObservation()
         do { try runtime.unregister(eventID: id) }
         catch { pendingCleanup[id] = entry.shortcut; throw error }
     }
@@ -119,7 +119,7 @@ final class GlobalShortcutService: GlobalShortcutRegistering {
             for (id, entry) in entries where entry.keyState != .ready && !runtime.isKeyPressed(entry.shortcut.keyCode) {
                 entries[id]?.keyState = .ready
             }
-            updateRecordingReleaseObservation()
+            updatePhysicalReleaseObservation()
         }
         // Keep held latches until release. Resuming cannot turn a held key into
         // a fresh press, even if a repeat arrives after a modal window closes.
@@ -128,8 +128,8 @@ final class GlobalShortcutService: GlobalShortcutRegistering {
     func close() throws {
         closed = true
         deliveryEnabled = false
-        recordingReleaseTask?.cancel()
-        recordingReleaseTask = nil
+        physicalReleaseTask?.cancel()
+        physicalReleaseTask = nil
         entries.removeAll()
         onPress = nil
         // Idempotent at the service boundary; failed native cleanup is retried.
@@ -142,11 +142,12 @@ final class GlobalShortcutService: GlobalShortcutRegistering {
         case .released:
             entry.keyState = .ready
             entries[id] = entry
-            updateRecordingReleaseObservation()
+            updatePhysicalReleaseObservation()
         case .pressed:
             guard entry.keyState == .ready else { return }
             entry.keyState = .held
             entries[id] = entry
+            updatePhysicalReleaseObservation()
             guard deliveryEnabled else { return }
             onPress?(entry.registration)
         }
@@ -157,37 +158,36 @@ final class GlobalShortcutService: GlobalShortcutRegistering {
         for (id, entry) in entries where entry.shortcut.keyCode == keyCode {
             entries[id]?.keyState = .ready
         }
-        updateRecordingReleaseObservation()
+        updatePhysicalReleaseObservation()
     }
 
-    private func updateRecordingReleaseObservation() {
-        guard !closed, entries.values.contains(where: { $0.keyState == .awaitingRecordingRelease }) else {
-            recordingReleaseTask?.cancel()
-            recordingReleaseTask = nil
+    private func updatePhysicalReleaseObservation() {
+        guard !closed, entries.values.contains(where: { $0.keyState != .ready }) else {
+            physicalReleaseTask?.cancel()
+            physicalReleaseTask = nil
             return
         }
-        guard recordingReleaseTask == nil else { return }
-        // Registration happens during the recorder's keyDown. Carbon need not
-        // pair that pre-registration gesture with a hot-key release. Raw keyUp
-        // is the immediate path; physical checks also cover losing app focus
-        // before releasing. Observe only these initial holds, never clear one
-        // merely because a delay elapsed or a new hot-key press arrived.
-        recordingReleaseTask = Task { @MainActor [weak self] in
+        guard physicalReleaseTask == nil else { return }
+        // Carbon may miss a release after recording or a delivered hot key.
+        // Raw keyUp is the immediate path; physical checks also cover losing
+        // app focus before releasing. Never clear a hold merely because a
+        // delay elapsed or a new hot-key press arrived.
+        physicalReleaseTask = Task { @MainActor [weak self] in
             while !Task.isCancelled {
                 do { try await Task.sleep(for: .milliseconds(10)) }
                 catch { return }
                 guard !Task.isCancelled, let self, !self.closed else { return }
-                for (id, entry) in self.entries where entry.keyState == .awaitingRecordingRelease {
+                for (id, entry) in self.entries where entry.keyState != .ready {
                     if !self.runtime.isKeyPressed(entry.shortcut.keyCode) {
                         self.entries[id]?.keyState = .ready
                     }
                 }
-                self.updateRecordingReleaseObservation()
+                self.updatePhysicalReleaseObservation()
             }
         }
     }
 
-    isolated deinit { recordingReleaseTask?.cancel() }
+    isolated deinit { physicalReleaseTask?.cancel() }
 }
 
 extension ShortcutModifiers {

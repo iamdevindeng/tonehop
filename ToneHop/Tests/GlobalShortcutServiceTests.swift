@@ -32,6 +32,95 @@ final class GlobalShortcutServiceTests: XCTestCase {
         XCTAssertEqual(count, 3)
     }
 
+    func testMissedHotKeyReleaseIsReconciledFromPhysicalState() async throws {
+        let runtime = ShortcutTestRuntime()
+        let service = GlobalShortcutService(runtime: runtime)
+        defer { try? service.close() }
+        var presses = 0
+        service.onPress = { _ in presses += 1 }
+        _ = try service.register(key())
+        runtime.pressed.insert(40)
+        runtime.handler?(1, .pressed)
+        XCTAssertEqual(presses, 1)
+        await waitForKeyStateRead(runtime, pressed: true)
+        runtime.keyReleaseHandler?(38)
+        runtime.handler?(1, .pressed)
+        runtime.handler?(1, .pressed)
+        XCTAssertEqual(presses, 1, "Physical observation and an unrelated release cannot unlock a held gesture.")
+
+        runtime.pressed.remove(40) // Neither Carbon nor raw key-up delivers a release.
+        await waitForKeyStateRead(runtime, pressed: false)
+        XCTAssertEqual(presses, 1, "Observing release cannot submit another selection.")
+        runtime.pressed.insert(40)
+        runtime.handler?(1, .pressed)
+        runtime.handler?(1, .pressed)
+        XCTAssertEqual(presses, 2, "The first deliberate press after the missed release works exactly once.")
+    }
+
+    func testHeldKeyObserverStopsAfterReleaseAndOnClose() async throws {
+        let runtime = ShortcutTestRuntime()
+        let service = GlobalShortcutService(runtime: runtime)
+        defer { try? service.close() }
+        _ = try service.register(key())
+        let readyReads = runtime.keyStateReads
+        try await Task.sleep(for: .milliseconds(100))
+        XCTAssertEqual(runtime.keyStateReads, readyReads, "Ready entries do not need a physical observer.")
+
+        runtime.pressed.insert(40)
+        runtime.handler?(1, .pressed)
+        await waitForKeyStateRead(runtime, pressed: true)
+        runtime.pressed.remove(40)
+        await waitForKeyStateRead(runtime, pressed: false)
+        let releasedReads = runtime.keyStateReads
+        try await Task.sleep(for: .milliseconds(100))
+        XCTAssertEqual(runtime.keyStateReads, releasedReads, "The observer stops when every entry is ready.")
+
+        runtime.pressed.insert(40)
+        runtime.handler?(1, .pressed)
+        await waitForKeyStateRead(runtime, pressed: true)
+        try service.close()
+        let closedReads = runtime.keyStateReads
+        try await Task.sleep(for: .milliseconds(100))
+        XCTAssertEqual(runtime.keyStateReads, closedReads, "Closing cancels observation of a physically held key.")
+    }
+
+    func testPhysicalReleaseIsObservedWhileDeliveryIsDisabled() async throws {
+        let runtime = ShortcutTestRuntime()
+        let service = GlobalShortcutService(runtime: runtime)
+        defer { try? service.close() }
+        var presses = 0
+        service.onPress = { _ in presses += 1 }
+        _ = try service.register(key())
+        service.setDeliveryEnabled(false)
+        runtime.pressed.insert(40)
+        runtime.handler?(1, .pressed)
+        await waitForKeyStateRead(runtime, pressed: true)
+        runtime.pressed.remove(40)
+        await waitForKeyStateRead(runtime, pressed: false)
+        XCTAssertEqual(presses, 0)
+
+        // The new key-down precedes enabling, so its synchronous state check
+        // cannot compensate for failing to observe the preceding release.
+        runtime.pressed.insert(40)
+        service.setDeliveryEnabled(true)
+        runtime.handler?(1, .pressed)
+        runtime.handler?(1, .pressed)
+        XCTAssertEqual(presses, 1)
+    }
+
+    private func waitForKeyStateRead(_ runtime: ShortcutTestRuntime, pressed: Bool,
+                                     file: StaticString = #filePath, line: UInt = #line) async {
+        let observed = expectation(description: "Physical observer reads key 40 as \(pressed ? "held" : "released")")
+        runtime.onKeyStateRead = { code, isPressed in
+            guard code == 40, isPressed == pressed else { return }
+            runtime.onKeyStateRead = nil
+            observed.fulfill()
+        }
+        let result = await XCTWaiter.fulfillment(of: [observed], timeout: 2)
+        runtime.onKeyStateRead = nil
+        XCTAssertEqual(result, .completed, file: file, line: line)
+    }
+
     func testUnregisteredTokenNeverDeliversAndNativeCleanupCanRetry() throws {
         let runtime = ShortcutTestRuntime()
         let subject = GlobalShortcutService(runtime: runtime)
@@ -476,6 +565,7 @@ private final class ShortcutTestRuntime: ShortcutHotKeyRuntime {
     var liveIDs: Set<UInt32> = []
     var pressed: Set<UInt16> = []
     var onKeyStateRead: ((UInt16, Bool) -> Void)?
+    var keyStateReads = 0
     var failInstall = false, failUnregister = false
     func installHandler(_ handler: @escaping (UInt32, ShortcutKeyPhase) -> Void,
                         onKeyRelease: @escaping (UInt16) -> Void) throws {
@@ -490,6 +580,7 @@ private final class ShortcutTestRuntime: ShortcutHotKeyRuntime {
     }
     func systemShortcuts() throws -> Set<DeviceShortcut> { [] }
     func isKeyPressed(_ keyCode: UInt16) -> Bool {
+        keyStateReads += 1
         let value = pressed.contains(keyCode)
         onKeyStateRead?(keyCode, value)
         return value
