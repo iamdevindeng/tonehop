@@ -123,9 +123,19 @@ static const void * const *THFixtureVTable(CFTypeRef object) {
         NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, THFixtureCopyBuffered};
     static const void * const operations[] = {(void *)1, THFixtureAdd, THFixtureRemove};
     static const void * const manager[] = {(void *)1, THFixtureMode};
+    static const void * const mismatchedManager[] = {(void *)2, THFixtureMode};
+    static const void * const nullSlotManager[] = {(void *)1, NULL};
     static const void * const contextTable[] = {NULL, base, routing, NULL, operations};
     static const void * const managerTable[] = {NULL, base, manager, NULL, operations};
-    return [[(__bridge NSDictionary *)object objectForKey:@"kind"] isEqual:@"manager"] ? managerTable : contextTable;
+    static const void * const missingManagerTable[] = {NULL, base, NULL, NULL, operations};
+    static const void * const mismatchedManagerTable[] = {NULL, base, mismatchedManager, NULL, operations};
+    static const void * const nullSlotManagerTable[] = {NULL, base, nullSlotManager, NULL, operations};
+    if (![[(__bridge NSDictionary *)object objectForKey:@"kind"] isEqual:@"manager"]) return contextTable;
+    THPrivateAudioRuntimeFixture *environment = THFixtureEnvironment(object);
+    if (environment.managerClassMissing) return missingManagerTable;
+    if (environment.managerClassVersionMismatch) return mismatchedManagerTable;
+    if (environment.setModeSlotMissing) return nullSlotManagerTable;
+    return managerTable;
 }
 static CFTypeID THFixtureType(void) { return CFDictionaryGetTypeID(); }
 static SInt32 THFixtureContextPlaceholder(CFAllocatorRef allocator, CFDictionaryRef options, CFTypeRef *output) { *output = NULL; return -1; }
@@ -166,6 +176,7 @@ typedef struct OpaqueFigEndpoint *THFixtureFigEndpoint;
     __block __weak THPrivateAudioRuntimeFixture *owner;
     self = [super initWithFunctions:functions keyResolver:keyResolver coreMediaKeyResolver:keyResolver
         symbolName:^NSString *(const void *function) {
+            if (function == THFixtureMode) return owner.setModeSymbolOverride ?: @"FigEndpointManagerRemoteXPC_SetDiscoveryMode";
             if (function == THFixtureCopyProperty) return @"THFixtureCopyProperty";
             if (function == THFixtureCopyRoutes) return @"routingContextRemoteXPC_CopyRoutes";
             if (function == THFixtureCopyBuffered) return @"routingContextRemoteXPC_CopySelectedBufferedEndpoint";

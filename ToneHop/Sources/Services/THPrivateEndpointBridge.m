@@ -20,6 +20,34 @@ static NSError *THEError(NSInteger code, NSString *message, NSDictionary *diagno
         userInfo:@{NSLocalizedDescriptionKey:message, @"diagnostics":diagnostics}];
 }
 
+static NSDictionary<NSString *, NSString *> *THESetModeVerification(THPrivateAudioRuntime *runtime,
+                                                                   const void * const *managerClass) {
+    NSString *state, *symbol = @"";
+    if (!managerClass) state = @"missingTable";
+    else if ((uintptr_t)managerClass[0] != 1) state = @"versionMismatch";
+    else if (!managerClass[1]) state = @"nullSlot";
+    else {
+        symbol = [runtime symbolName:managerClass[1]];
+        // Observed with dladdr on macOS 27.0.1 (26A434). Other slots and the
+        // containing image are not part of this call's verification policy.
+        if (!symbol.length) state = @"symbolUnresolved";
+        else if ([symbol isEqualToString:@"FigEndpointManagerRemoteXPC_SetDiscoveryMode"]) state = @"verified";
+        else state = @"symbolMismatch";
+    }
+    return @{@"state":state, @"symbol":symbol,
+        @"action":[state isEqualToString:@"verified"] ? @"allowed" : @"skipped",
+        @"osVersion":NSProcessInfo.processInfo.operatingSystemVersionString};
+}
+
+static void THELogUnverifiedSetMode(NSDictionary<NSString *, NSString *> *verification) {
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        os_log_t log = os_log_create("com.dengziyi.ToneHop", "EndpointDiscovery");
+        os_log_error(log, "SetDiscoveryMode verification: state=%{public}@ symbol=%{public}@ action=%{public}@ osVersion=%{public}@",
+            verification[@"state"], verification[@"symbol"], verification[@"action"], verification[@"osVersion"]);
+    });
+}
+
 static id THERead(THPrivateAudioRuntime *runtime, CFTypeRef object, NSString *symbol, THEPropertyCopy function,
                   CFTypeID expectedType, NSMutableDictionary *status, NSString *field) {
     CFStringRef key = THEKey(runtime, symbol);
@@ -282,30 +310,34 @@ static NSArray<NSDictionary *> *THEFieldIssueSummary(NSArray<NSDictionary *> *ro
         const void * const *managerClass = vtable ? vtable[2] : NULL;
         uintptr_t version = managerClass ? (uintptr_t)managerClass[0] : 0;
         self.state[@"managerClassVersion"] = @(version);
-        if (!managerClass || version != 1 || !managerClass[1]) {
-            CFRelease(_manager); _manager = NULL;
-            if (error) *error = THEError(3, NSLocalizedStringWithDefaultValue(@"native.endpoint.abi_unverified", nil, NSBundle.mainBundle, @"The calling convention of the AirPlay receiver discovery interface has not been verified.", @"AirPlay status or error shown to the user."), self.diagnostics);
-            return NO;
+        NSDictionary<NSString *, NSString *> *verification = THESetModeVerification(_runtime, managerClass);
+        self.state[@"setDiscoveryModeVerification"] = verification;
+        if ([verification[@"state"] isEqualToString:@"verified"]) {
+            _setMode = (THEModeSet)managerClass[1];
+            __block SInt32 startStatus = NSUserCancelledError;
+            // Reference acquisition may have outlived shutdown. Only the actual
+            // mode write is registered, through the same gate as route mutations.
+            if (!THPerformAudioMutation(_performIfRunning, ^{
+                startStatus = self->_setMode(self->_manager, detailed, NULL);
+            })) {
+                [self stop];
+                if (error) *error = THEError(NSUserCancelledError, NSLocalizedStringWithDefaultValue(@"native.endpoint.quitting", nil, NSBundle.mainBundle, @"The app is quitting. AirPlay receiver discovery was not started.", @"AirPlay status or error shown to the user."), self.diagnostics);
+                return NO;
+            }
+            result = startStatus;
+            self.state[@"startStatus"] = @(result);
+            if (result) {
+                [self stop];
+                if (error) *error = THEError(4, NSLocalizedStringWithDefaultValue(@"native.endpoint.start_failed", nil, NSBundle.mainBundle, @"The system could not start AirPlay receiver discovery.", @"AirPlay status or error shown to the user."), self.diagnostics);
+                return NO;
+            }
+            self.state[@"mode"] = @"DetailedDiscovery";
+        } else {
+            // This optional shared-mode request must not disable endpoint reads.
+            _setMode = NULL;
+            self.state[@"mode"] = @"skippedUnverified";
+            THELogUnverifiedSetMode(verification);
         }
-        _setMode = (THEModeSet)managerClass[1];
-        __block SInt32 startStatus = NSUserCancelledError;
-        // Reference acquisition may have outlived shutdown. Only the actual
-        // mode write is registered, through the same gate as route mutations.
-        if (!THPerformAudioMutation(_performIfRunning, ^{
-            startStatus = self->_setMode(self->_manager, detailed, NULL);
-        })) {
-            [self stop];
-            if (error) *error = THEError(NSUserCancelledError, NSLocalizedStringWithDefaultValue(@"native.endpoint.quitting", nil, NSBundle.mainBundle, @"The app is quitting. AirPlay receiver discovery was not started.", @"AirPlay status or error shown to the user."), self.diagnostics);
-            return NO;
-        }
-        result = startStatus;
-        self.state[@"startStatus"] = @(result);
-        if (result) {
-            [self stop];
-            if (error) *error = THEError(4, NSLocalizedStringWithDefaultValue(@"native.endpoint.start_failed", nil, NSBundle.mainBundle, @"The system could not start AirPlay receiver discovery.", @"AirPlay status or error shown to the user."), self.diagnostics);
-            return NO;
-        }
-        self.state[@"mode"] = @"DetailedDiscovery";
         self.state[@"recoveryState"] = @"healthy";
         self.startedAt = NSDate.date;
         return YES;

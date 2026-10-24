@@ -30,6 +30,64 @@
     XCTAssertEqual(runtime.modes.count, 1u);
     XCTAssertEqual(runtime.managerReleases, 1u);
 }
+- (void)assertSkippedModeKeepsBridgeUsable:(THPrivateAudioRuntimeFixture *)runtime
+                                   state:(NSString *)state symbol:(NSString *)symbol {
+    THPrivateEndpointBridge *bridge = [[THPrivateEndpointBridge alloc] initWithRuntime:runtime
+        performIfRunning:^BOOL(void (^operation)(void)) { XCTFail(@"An unverified slot must not register a mutation"); return NO; }];
+    NSError *error = nil;
+    XCTAssertTrue([bridge startWithError:&error]);
+    XCTAssertNil(error);
+    XCTAssertEqualObjects(runtime.modes, @[]);
+    XCTAssertEqual(runtime.managerCopies, 1u);
+    XCTAssertEqual(runtime.managerReleases, 0u);
+    XCTAssertEqualObjects(bridge.diagnostics[@"active"], @YES);
+    XCTAssertEqualObjects(bridge.diagnostics[@"mode"], @"skippedUnverified");
+    XCTAssertEqualObjects(bridge.diagnostics[@"recoveryState"], @"healthy");
+    XCTAssertEqualObjects(bridge.diagnostics[@"startStatus"], NSNull.null);
+    NSDictionary *verification = bridge.diagnostics[@"setDiscoveryModeVerification"];
+    XCTAssertEqualObjects(verification[@"state"], state);
+    XCTAssertEqualObjects(verification[@"symbol"], symbol);
+    XCTAssertEqualObjects(verification[@"action"], @"skipped");
+    XCTAssertEqualObjects(verification[@"osVersion"], NSProcessInfo.processInfo.operatingSystemVersionString);
+    XCTAssertEqual([bridge availableEndpointReferencesWithError:&error].count, 2u);
+    XCTAssertNil(error);
+    XCTAssertNotNil([bridge snapshotWithError:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue([bridge startWithError:&error]);
+    XCTAssertNil(error);
+    XCTAssertEqual(runtime.managerCopies, 1u);
+    XCTAssertEqual(runtime.managerReleases, 0u);
+    XCTAssertEqualObjects(runtime.modes, @[]);
+    [bridge stop];
+    [self assertReleased:bridge];
+    XCTAssertEqual(runtime.managerReleases, 1u);
+    XCTAssertEqualObjects(runtime.modes, @[]);
+}
+- (void)testUnverifiedSetModeSymbolSkipsCallButBridgeStaysUsable {
+    THPrivateAudioRuntimeFixture *runtime = [[THPrivateAudioRuntimeFixture alloc] initFixture];
+    runtime.setModeSymbolOverride = @"Unrelated_SetDiscoveryMode";
+    [self assertSkippedModeKeepsBridgeUsable:runtime state:@"symbolMismatch" symbol:runtime.setModeSymbolOverride];
+}
+- (void)testUnresolvedSetModeSymbolSkipsCallButBridgeStaysUsable {
+    THPrivateAudioRuntimeFixture *runtime = [[THPrivateAudioRuntimeFixture alloc] initFixture];
+    runtime.setModeSymbolOverride = @"";
+    [self assertSkippedModeKeepsBridgeUsable:runtime state:@"symbolUnresolved" symbol:@""];
+}
+- (void)testVersionMismatchSkipsCallButBridgeStaysUsable {
+    THPrivateAudioRuntimeFixture *runtime = [[THPrivateAudioRuntimeFixture alloc] initFixture];
+    runtime.managerClassVersionMismatch = YES;
+    [self assertSkippedModeKeepsBridgeUsable:runtime state:@"versionMismatch" symbol:@""];
+}
+- (void)testNullSetModeSlotSkipsCallButBridgeStaysUsable {
+    THPrivateAudioRuntimeFixture *runtime = [[THPrivateAudioRuntimeFixture alloc] initFixture];
+    runtime.setModeSlotMissing = YES;
+    [self assertSkippedModeKeepsBridgeUsable:runtime state:@"nullSlot" symbol:@""];
+}
+- (void)testMissingManagerClassSkipsCallButBridgeStaysUsable {
+    THPrivateAudioRuntimeFixture *runtime = [[THPrivateAudioRuntimeFixture alloc] initFixture];
+    runtime.managerClassMissing = YES;
+    [self assertSkippedModeKeepsBridgeUsable:runtime state:@"missingTable" symbol:@""];
+}
 - (void)testStopReleasesManagerAndClearsLocalLifecycleWithoutModeWrite {
     THPrivateAudioRuntimeFixture *runtime = [[THPrivateAudioRuntimeFixture alloc] initFixture];
     THPrivateEndpointBridge *bridge = [self startedBridge:runtime];

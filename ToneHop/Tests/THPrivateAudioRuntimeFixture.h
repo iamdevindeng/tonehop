@@ -9,6 +9,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) SInt32 contextStatus, managerStatus, propertyStatus, modeStatus, addStatus, removeStatus, managerPropertyStatus;
 @property(nonatomic) BOOL throwFromAdd, throwFromRemove, throwFromMode, deferAdd, deferRemove, mismatchAdd, mismatchRemove, invalidContext, invalidHAL, invalidAssociation;
 @property(nonatomic) BOOL omitAddStream, managerWrongType, throwFromStaleSession;
+@property(nonatomic) BOOL managerClassMissing, managerClassVersionMismatch, setModeSlotMissing;
+/// nil uses the verified system symbol; an empty string simulates no symbol.
+@property(nonatomic, copy, nullable) NSString *setModeSymbolOverride;
 @property(nonatomic, copy) NSArray<NSString *> *modes;
 @property(nonatomic, copy) NSArray<NSString *> *availableEndpointIdentifiers;
 @property(nonatomic, copy) NSString *contextIdentifier;
