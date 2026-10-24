@@ -224,6 +224,10 @@ We have not verified the following:
 
 Automated tests do not replace these hardware checks.
 
+## Community
+
+Thanks to the [LINUX DO](https://linux.do) community.
+
 ## License
 
 [MIT](LICENSE). Copyright (c) 2026 ToneHop contributors.

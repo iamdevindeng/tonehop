@@ -223,6 +223,10 @@ ToneHop 只会移除能确认由自身创建的流。它不会移除系统或其
 
 自动化测试不能替代这些实机检查。
 
+## 社区
+
+感谢 [LINUX DO](https://linux.do) 社区。
+
 ## 许可证
 
 [MIT](LICENSE). Copyright (c) 2026 ToneHop contributors.
