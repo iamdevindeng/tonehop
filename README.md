@@ -6,10 +6,11 @@ ToneHop is a native macOS menu bar app. Use it to switch audio output devices, a
 
 - Select an output device from the menu bar. ToneHop shows the switch result after the system confirms it.
 - Adjust a device's volume if the device has a supported volume control.
+- See the current output's volume and mute state next to the menu bar icon.
 - Set a shortcut for each device. ToneHop keeps saved shortcuts when a device is unavailable.
 - Use the app in English or Simplified Chinese. Device names keep their original text.
 
-**[Download ToneHop v0.1.0 for Apple silicon](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.0)** · [All releases](https://github.com/iamdevindeng/tonehop/releases)
+**[Download ToneHop v0.1.1 for Apple silicon](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.1)** · [All releases](https://github.com/iamdevindeng/tonehop/releases)
 
 <p align="center">
   <img src="docs/images/tonehop-menu.png" width="328" alt="ToneHop device list with volume controls and keyboard shortcuts">
@@ -19,7 +20,7 @@ ToneHop is a native macOS menu bar app. Use it to switch audio output devices, a
 
 Download the app from [Releases](https://github.com/iamdevindeng/tonehop/releases):
 
-- **macOS · Apple silicon:** [ToneHop-0.1.0-arm64.dmg](https://github.com/iamdevindeng/tonehop/releases/download/v0.1.0/ToneHop-0.1.0-arm64.dmg)
+- **macOS · Apple silicon:** [ToneHop-0.1.1-arm64.dmg](https://github.com/iamdevindeng/tonehop/releases/download/v0.1.1/ToneHop-0.1.1-arm64.dmg)
 
 ToneHop requires an **Apple silicon Mac** with **macOS 27.0 or later**. You do not need Xcode.
 We tested this release on macOS 27.0.1. Other macOS versions and hardware remain unverified.
@@ -54,10 +55,10 @@ If macOS reports malware or a damaged app, stop. Check the download instead.
 Download the matching `.sha256` file from the same release. Put the `.sha256` file beside the DMG. Open Terminal in that folder. Run this command:
 
 ```sh
-shasum -a 256 -c ToneHop-0.1.0-arm64.dmg.sha256
+shasum -a 256 -c ToneHop-0.1.1-arm64.dmg.sha256
 ```
 
-The expected result is `ToneHop-0.1.0-arm64.dmg: OK`. Use the filenames for the version you downloaded.
+The expected result is `ToneHop-0.1.1-arm64.dmg: OK`. Use the filenames for the version you downloaded.
 
 </details>
 
@@ -144,7 +145,7 @@ To package the built app with the MIT license and a SHA-256 checksum, run this c
 ```sh
 ./script/package_dmg.sh \
   "$TONEHOP_DERIVED_DATA/Build/Products/Release/ToneHop.app" \
-  "$TONEHOP_DERIVED_DATA/dist/ToneHop-0.1.0-arm64.dmg"
+  "$TONEHOP_DERIVED_DATA/dist/ToneHop-0.1.1-arm64.dmg"
 ```
 
 The packaging script does not build or launch the app. It refuses to overwrite existing output files.

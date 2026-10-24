@@ -6,10 +6,11 @@ ToneHop 是一款原生 macOS 菜单栏应用。你可以用它切换音频输�
 
 - 从菜单栏选择输出设备。ToneHop 会在系统确认后显示切换结果。
 - 如果设备提供受支持的音量控制接口，即可调节该设备的音量。
+- 菜单栏图标旁会显示当前输出设备的音量和静音状态。
 - 为每台设备设置快捷键。设备不可用时，ToneHop 会保留已保存的快捷键。
 - 支持英语和简体中文界面。设备名称保留原始文字。
 
-**[下载适用于 Apple 芯片的 ToneHop v0.1.0](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.0)** · [所有版本](https://github.com/iamdevindeng/tonehop/releases)
+**[下载适用于 Apple 芯片的 ToneHop v0.1.1](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.1)** · [所有版本](https://github.com/iamdevindeng/tonehop/releases)
 
 <p align="center">
   <img src="docs/images/tonehop-menu.png" width="328" alt="ToneHop 英文界面：音频输出设备列表、音量控制和快捷键">
@@ -19,7 +20,7 @@ ToneHop 是一款原生 macOS 菜单栏应用。你可以用它切换音频输�
 
 前往[发布页面](https://github.com/iamdevindeng/tonehop/releases)下载安装包：
 
-- **macOS · Apple 芯片：** [ToneHop-0.1.0-arm64.dmg](https://github.com/iamdevindeng/tonehop/releases/download/v0.1.0/ToneHop-0.1.0-arm64.dmg)
+- **macOS · Apple 芯片：** [ToneHop-0.1.1-arm64.dmg](https://github.com/iamdevindeng/tonehop/releases/download/v0.1.1/ToneHop-0.1.1-arm64.dmg)
 
 需要搭载 **Apple 芯片的 Mac**，以及 **macOS 27.0 或更高版本**。无需安装 Xcode。
 此版本已在 macOS 27.0.1 上测试。其他 macOS 版本和硬件尚未验证。
@@ -54,10 +55,10 @@ ToneHop 在菜单栏中运行。启动时不会打开主窗口，也不会更改
 从同一发布页面下载配套的 `.sha256` 文件。将它与 DMG 放在同一文件夹中。在该文件夹中打开终端，运行以下命令：
 
 ```sh
-shasum -a 256 -c ToneHop-0.1.0-arm64.dmg.sha256
+shasum -a 256 -c ToneHop-0.1.1-arm64.dmg.sha256
 ```
 
-预期结果为 `ToneHop-0.1.0-arm64.dmg: OK`。请使用与你下载的版本对应的文件名。
+预期结果为 `ToneHop-0.1.1-arm64.dmg: OK`。请使用与你下载的版本对应的文件名。
 
 </details>
 
@@ -143,7 +144,7 @@ open "$TONEHOP_DERIVED_DATA/Build/Products/Release"
 ```sh
 ./script/package_dmg.sh \
   "$TONEHOP_DERIVED_DATA/Build/Products/Release/ToneHop.app" \
-  "$TONEHOP_DERIVED_DATA/dist/ToneHop-0.1.0-arm64.dmg"
+  "$TONEHOP_DERIVED_DATA/dist/ToneHop-0.1.1-arm64.dmg"
 ```
 
 打包脚本不会构建或启动应用。它会拒绝覆盖已有的输出文件。
