@@ -149,6 +149,29 @@ final class AudioServiceRecoveryTests: XCTestCase {
         XCTAssertEqual(routes.cleanupWrites, 0)
     }
 
+    func testHiddenResetRestartsFallbackUntilReplacementObservationSucceeds() async throws {
+        let hardware = RecoveryHardware()
+        let routes = RecoveryRoutes()
+        let store = AudioStore(hardware: hardware, routes: routes,
+                               observerRetryDelay: .milliseconds(50), pollingInterval: .milliseconds(10))
+        store.setPanelVisible(false)
+        store.start()
+        await waitUntil { !store.devices.isEmpty && routes.periodicObservation.last == false && !store.isRefreshing }
+        let beforeReset = hardware.snapshotReads
+        hardware.failNextObservations = 2
+        hardware.restart()
+        await waitUntil { routes.resets == 1 && hardware.observationAttempts >= 2 }
+        XCTAssertEqual(routes.periodicObservation.last, true)
+        await waitUntil { hardware.snapshotReads >= beforeReset + 3 }
+        await waitUntil { hardware.observationAttempts >= 4 && routes.periodicObservation.last == false && !store.isRefreshing }
+        let recovered = hardware.snapshotReads
+        try await Task.sleep(for: .milliseconds(150))
+        XCTAssertEqual(hardware.snapshotReads, recovered)
+        XCTAssertTrue(hardware.writes.isEmpty)
+        XCTAssertEqual(routes.selectionWrites, 0)
+        try await store.shutdown()
+    }
+
     private func waitUntil(_ condition: () -> Bool, file: StaticString = #filePath, line: UInt = #line) async {
         let deadline = ContinuousClock.now.advanced(by: .seconds(3))
         while !condition(), .now < deadline { try? await Task.sleep(for: .milliseconds(1)) }
@@ -235,6 +258,7 @@ private final class RecoveryHardware: AudioHardwareProviding {
     let external = AudioDevice(id: "hal:recovery-usb", name: "USB", transport: .usb,
                                backend: .coreAudio(uid: "recovery-usb"), shortcutTarget: .hal(uid: "recovery-usb"))
     var observationAttempts = 0
+    var snapshotReads = 0
     var failNextObservations = 0
     var callback: (@Sendable (AudioHardwareEvent) -> Void)?
     var writes: [String] = []
@@ -243,6 +267,7 @@ private final class RecoveryHardware: AudioHardwareProviding {
     private var heldSnapshot: CheckedContinuation<Void, Never>?
     var snapshotIsHeld: Bool { heldSnapshot != nil }
     func snapshot() async throws -> CoreAudioSnapshot {
+        snapshotReads += 1
         let captured = CoreAudioSnapshot(devices: [device, external], currentDeviceID: device.id,
             systemSoundDeviceID: device.id, warnings: [], confirmedDeviceObjects: ["recovery-speaker": 7, "recovery-usb": 8],
             serviceGeneration: serviceEpoch?.capture().id)
@@ -274,6 +299,7 @@ private final class RecoveryHardware: AudioHardwareProviding {
 @MainActor
 private final class RecoveryRoutes: PrivateRouting {
     var onChange: (() -> Void)?
+    var periodicObservation: [Bool] = []
     var resets = 0
     var freshReads = 0
     var selectionWrites = 0
@@ -282,6 +308,7 @@ private final class RecoveryRoutes: PrivateRouting {
     private var prepared: CheckedContinuation<Void, Never>?
     var prepareIsHeld: Bool { prepared != nil }
     func start() {}
+    func setPeriodicObservation(_ active: Bool) { periodicObservation.append(active) }
     func stop() {}
     func beginShutdown() {}
     func serviceDidRestart() { resets += 1 }

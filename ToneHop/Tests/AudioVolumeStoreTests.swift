@@ -504,6 +504,83 @@ final class AudioVolumeStoreTests: XCTestCase {
         await finish(store, provider)
     }
 
+    func testHiddenVolumePollingStopsForTenSecondsAndListenersStillRefresh() async throws {
+        let first = target("first")
+        let provider = VolumeStoreProvider(targets: [first])
+        let resolver = VolumeStoreResolver(targets: [first])
+        let store = makeStore(provider, resolver, pollingInterval: .milliseconds(25))
+        store.setPollingActive(false)
+        store.updateTargets([first.deviceID: first])
+        await store.drain()
+        let settled = provider.reads.count
+        try await Task.sleep(for: .seconds(10))
+        XCTAssertEqual(provider.reads.count, settled, "A hidden panel must not poll bound volumes.")
+
+        provider.snapshots[first] = snapshot(first, value: 0.7)
+        provider.signalChange()
+        await waitForState("A hidden listener change updates the menu bar's value") {
+            store.state(for: first.deviceID)?.value == 0.7
+        }
+        let beforeOpening = provider.reads.count
+        store.setPollingActive(true)
+        store.setPollingActive(false)
+        store.setPollingActive(true)
+        await waitForState("A rapid reopen retains its periodic reader") { provider.reads.count >= beforeOpening + 3 }
+        store.setPollingActive(false)
+        await store.drain()
+        let hidden = provider.reads.count
+        try await Task.sleep(for: .milliseconds(150))
+        XCTAssertEqual(provider.reads.count, hidden)
+        XCTAssertTrue(provider.writes.isEmpty)
+        await finish(store, provider)
+    }
+
+    func testVolumeActivationReadsImmediatelyWithoutWaitingForTheInterval() async throws {
+        let first = target("first")
+        let provider = VolumeStoreProvider(targets: [first])
+        let resolver = VolumeStoreResolver(targets: [first])
+        let store = makeStore(provider, resolver, pollingInterval: .seconds(30))
+        store.setPollingActive(false)
+        store.updateTargets([first.deviceID: first])
+        await store.drain()
+        let beforeOpening = provider.reads.count
+        store.setPollingActive(true)
+        await waitForState("Opening reads before the 30-second interval") { provider.reads.count > beforeOpening }
+        await finish(store, provider)
+    }
+
+    func testHiddenVolumeObserverFailurePollsUntilObservationRecoversOnResume() async throws {
+        let first = target("first")
+        let provider = VolumeStoreProvider(targets: [first])
+        provider.failObservation = true
+        let resolver = VolumeStoreResolver(targets: [first])
+        let store = makeStore(provider, resolver, pollingInterval: .milliseconds(10))
+        store.setPollingActive(false)
+        store.updateTargets([first.deviceID: first])
+        await waitForState("Missing listeners retain hidden fallback") {
+            store.observationIssue == .listenerUnavailable && provider.reads.count >= 4
+        }
+
+        store.pause()
+        await store.drain()
+        let paused = provider.reads.count
+        try await Task.sleep(for: .milliseconds(50))
+        XCTAssertEqual(provider.reads.count, paused)
+        provider.failObservation = false
+        store.resume()
+        await store.drain()
+        XCTAssertNil(store.observationIssue)
+        let recovered = provider.reads.count
+        try await Task.sleep(for: .milliseconds(100))
+        XCTAssertEqual(provider.reads.count, recovered, "Successful replacement listeners stop the hidden fallback.")
+        provider.snapshots[first] = snapshot(first, value: 0.6)
+        provider.signalChange()
+        await waitForState("The replacement listener remains active while hidden") {
+            store.state(for: first.deviceID)?.value == 0.6
+        }
+        await finish(store, provider)
+    }
+
     private func target(_ id: String) -> AudioVolumeTarget {
         AudioVolumeTarget(deviceID: "hal:\(id)", uid: id)
     }
@@ -513,9 +590,10 @@ final class AudioVolumeStoreTests: XCTestCase {
         AudioVolumeSnapshot(target: target, value: value, capability: capability, mute: .unmuted)
     }
 
-    private func makeStore(_ provider: VolumeStoreProvider, _ resolver: VolumeStoreResolver) -> AudioVolumeStore {
+    private func makeStore(_ provider: VolumeStoreProvider, _ resolver: VolumeStoreResolver,
+                           pollingInterval: Duration = .seconds(3_600)) -> AudioVolumeStore {
         AudioVolumeStore(provider: provider, resolveTarget: { try resolver.resolve($0) },
-                         throttle: .zero, pollingInterval: .seconds(3_600))
+                         throttle: .zero, pollingInterval: pollingInterval)
     }
 
     private func assertFirstPermitCancelled(_ provider: VolumeStoreProvider,
@@ -595,6 +673,7 @@ private final class VolumeStoreProvider: AudioVolumeProviding {
     var genericWriteFailures: [AudioVolumeTarget: NSError] = [:]
     var readFailures: [AudioVolumeTarget: NSError] = [:]
     var holdReads = false
+    var failObservation = false
     var writeSuspension: WriteSuspension = .none
     private(set) var reads: [ReadCall] = []
     private(set) var writes: [WriteCall] = []
@@ -653,6 +732,7 @@ private final class VolumeStoreProvider: AudioVolumeProviding {
     }
 
     func observeVolumeChanges(targets: [AudioVolumeTarget], changed: @escaping @Sendable () -> Void) async throws {
+        if failObservation { throw AudioVolumeIssue.listenerUnavailable }
         onChange = changed
     }
 

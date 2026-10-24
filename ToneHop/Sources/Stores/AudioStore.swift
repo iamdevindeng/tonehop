@@ -11,6 +11,7 @@ protocol PrivateRouting: AnyObject {
     func stop()
     func beginShutdown()
     func systemOutputDidChange()
+    func setPeriodicObservation(_ active: Bool)
     func snapshot() -> PrivateRouteSnapshot
     func freshSnapshot() async -> PrivateRouteSnapshot
     func select(identifier: String) async throws
@@ -25,6 +26,7 @@ extension PrivateRouting {
     func serviceDidRestart() {}
     func freshSnapshot() async -> PrivateRouteSnapshot { snapshot() }
     func systemOutputDidChange() {}
+    func setPeriodicObservation(_ active: Bool) {}
     func shutdown() async throws { stop() }
     func ownedStreamForExit() async throws -> OwnedRouteExitEvidence? {
         throw AudioServiceError.unavailable(String(localized: "audio.exit_check_unsupported", defaultValue: "The current audio service does not support checking cleanup before quitting."))
@@ -108,6 +110,8 @@ final class AudioStore {
     @ObservationIgnored private var backgroundReadEpoch = 0
     @ObservationIgnored private var needsRefresh = false
     @ObservationIgnored private var started = false
+    // Non-panel owners, including diagnostics, retain periodic observation.
+    @ObservationIgnored private(set) var isPanelVisible = true
     @ObservationIgnored private var observerWarning: String?
     @ObservationIgnored private var confirmedTargetID: String?
     @ObservationIgnored private var feedbackBeforeCatalogReadFailure: (message: String, kind: FeedbackKind, presentation: FeedbackPresentation)?
@@ -145,6 +149,7 @@ final class AudioStore {
         guard !started, !shuttingDown else { return }
         started = true
         routes.onChange = { [weak self] in self?.refresh() }
+        routes.setPeriodicObservation(needsPeriodicRefresh)
         routes.start()
         let delivery = AudioChangeDelivery { [weak self] in
             guard let self, !self.shuttingDown else { return }
@@ -152,13 +157,41 @@ final class AudioStore {
             self.refresh()
         }
         hardwareChangeDelivery = delivery
+        updatePeriodicObservation()
+    }
+
+    func setPanelVisible(_ visible: Bool) {
+        guard !shuttingDown, isPanelVisible != visible else { return }
+        isPanelVisible = visible
+        updatePeriodicObservation()
+    }
+
+    private var needsPeriodicRefresh: Bool {
+        isPanelVisible || observerWarning != nil || installedObservationRevision != observationRevision
+    }
+
+    private func updatePeriodicObservation() {
+        guard started, !shuttingDown else { return }
+        routes.setPeriodicObservation(needsPeriodicRefresh)
+        guard needsPeriodicRefresh else {
+            monitorTask?.cancel()
+            monitorTask = nil
+            return
+        }
+        guard monitorTask == nil else { return }
         monitorTask = Task { [weak self, pollingInterval] in
             while !Task.isCancelled {
-                self?.ensureHardwareObservation()
-                self?.refresh()
-                do { try await Task.sleep(for: pollingInterval) } catch { break }
+                guard self?.periodicTick() == true else { return }
+                do { try await Task.sleep(for: pollingInterval) } catch { return }
             }
         }
+    }
+
+    private func periodicTick() -> Bool {
+        guard !shuttingDown, needsPeriodicRefresh else { return false }
+        ensureHardwareObservation()
+        refresh()
+        return true
     }
 
     private func ensureHardwareObservation() {
@@ -183,10 +216,12 @@ final class AudioStore {
                 guard !Task.isCancelled, !shuttingDown, observationRevision == revision else { return }
                 installedObservationRevision = revision
                 observerWarning = nil
+                updatePeriodicObservation()
             } catch {
                 guard !Task.isCancelled, !shuttingDown, observationRevision == revision else { return }
                 observerWarning = String(localized: "audio.notifications_unavailable", defaultValue: "System notifications are unavailable. Refreshing periodically.")
                 nextObserverAttempt = .now.advanced(by: observerRetryDelay)
+                updatePeriodicObservation()
             }
         }
     }
@@ -215,6 +250,7 @@ final class AudioStore {
         }
         ensureHardwareObservation()
         refresh()
+        updatePeriodicObservation()
     }
 
     /// Inspection is reversible: no shutdown gates close until consent and

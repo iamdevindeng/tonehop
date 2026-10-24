@@ -343,6 +343,90 @@ final class PrivateRouteRuntimeTests: XCTestCase {
         XCTAssertEqual(state.maximumConcurrentAttempts, 1)
         XCTAssertEqual(state.submissions, 0)
     }
+    func testInactivePrivateObservationStaysIdleForTenSecondsAndStillHandlesOutputEvents() async throws {
+        let signal = AudioShutdownSignal()
+        let worker = RuntimeRouteWorker(signal: signal)
+        let service = PrivateRouteService(worker: worker, shutdownSignal: signal,
+                                          runtimePollDelay: .milliseconds(25))
+        service.setPeriodicObservation(false)
+        service.start()
+        await waitUntil { service.snapshot().diagnostics == "complete:1" }
+        try await Task.sleep(for: .seconds(10))
+        let idle = await worker.state()
+        XCTAssertEqual(idle.attempts, 1)
+        XCTAssertEqual(idle.reads, 1)
+
+        service.setPeriodicObservation(false)
+        service.systemOutputDidChange()
+        await waitUntil { service.snapshot().diagnostics == "complete:2" }
+        service.setPeriodicObservation(true)
+        service.setPeriodicObservation(false)
+        service.setPeriodicObservation(true)
+        let deadline = ContinuousClock.now.advanced(by: .seconds(2))
+        while (await worker.state()).attempts < 5, .now < deadline {
+            try await Task.sleep(for: .milliseconds(1))
+        }
+        let active = await worker.state()
+        XCTAssertGreaterThanOrEqual(active.attempts, 5, "The replacement monitor must keep polling.")
+        service.setPeriodicObservation(false)
+        try await Task.sleep(for: .milliseconds(100))
+        let settled = await worker.state()
+        try await Task.sleep(for: .milliseconds(150))
+        let stopped = await worker.state()
+        XCTAssertEqual(stopped.attempts, settled.attempts, "An old cancelled timer must not survive rapid toggles.")
+        XCTAssertEqual(stopped.reads, settled.reads)
+        XCTAssertEqual(stopped.submissions, 0)
+        XCTAssertEqual(stopped.maximumConcurrentAttempts, 1)
+        try await service.shutdown()
+    }
+
+    func testPrivateDeactivationReconcilesExactlyOnceAndReactivationIsImmediate() async throws {
+        let signal = AudioShutdownSignal()
+        let worker = RuntimeRouteWorker(signal: signal)
+        let service = PrivateRouteService(worker: worker, shutdownSignal: signal, runtimePollDelay: .seconds(30))
+        service.start()
+        await waitUntil { service.snapshot().diagnostics == "complete:1" }
+        service.setPeriodicObservation(false)
+        await waitUntil { service.snapshot().diagnostics == "complete:2" }
+        service.setPeriodicObservation(false)
+        try await Task.sleep(for: .milliseconds(100))
+        let hidden = await worker.state()
+        XCTAssertEqual(hidden.attempts, 2)
+        XCTAssertEqual(hidden.reads, 2)
+
+        service.setPeriodicObservation(true)
+        await waitUntil { service.snapshot().diagnostics == "complete:3" }
+        let resumed = await worker.state()
+        XCTAssertEqual(resumed.attempts, 3, "The first active tick must not wait for the 30-second interval.")
+        XCTAssertEqual(resumed.reads, 3)
+        try await service.shutdown()
+    }
+
+    func testPrivateDeactivationPreservesInFlightReconciliationAndItsFollowUp() async throws {
+        let signal = AudioShutdownSignal()
+        let firstAttempt = XCTestExpectation(description: "native reconciliation is in flight")
+        let worker = RuntimeRouteWorker(signal: signal, suspendFirstAttempt: true, onAttempt: { attempt in
+            if attempt == 1 { firstAttempt.fulfill() }
+        })
+        let service = PrivateRouteService(worker: worker, shutdownSignal: signal, runtimePollDelay: .seconds(30))
+        service.start()
+        let started = await XCTWaiter.fulfillment(of: [firstAttempt], timeout: 2)
+        XCTAssertEqual(started, .completed)
+        service.setPeriodicObservation(false)
+        await worker.releaseFirstAttempt()
+        await waitUntil { service.snapshot().diagnostics == "complete:2" }
+        let finished = await worker.state()
+        XCTAssertEqual(finished.events, ["reconcile:1", "read", "reconcile:2", "read"])
+        XCTAssertEqual(finished.maximumConcurrentAttempts, 1)
+        XCTAssertEqual(finished.submissions, 0)
+        try await service.shutdown()
+    }
+
+    private func waitUntil(_ condition: () -> Bool, file: StaticString = #filePath, line: UInt = #line) async {
+        let deadline = ContinuousClock.now.advanced(by: .seconds(2))
+        while !condition(), .now < deadline { try? await Task.sleep(for: .milliseconds(1)) }
+        XCTAssertTrue(condition(), file: file, line: line)
+    }
 }
 
 private actor RuntimeRouteWorker: PrivateRouteWorking {

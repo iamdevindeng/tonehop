@@ -217,6 +217,8 @@ final class PrivateRouteService {
     private let cleanupRetryDelay: Duration
     private let runtimePollDelay: Duration
     private var monitor: Task<Void, Never>?
+    private var started = false
+    private var periodicObservation = true
     private var runtimeTask: Task<Void, Never>?
     private var needsRuntimeReconcile = false
     private struct FailedSelectionCleanupRequest {
@@ -280,9 +282,32 @@ final class PrivateRouteService {
     func freshSnapshot() async -> PrivateRouteSnapshot { await readAndPublish() }
 
     func start() {
+        guard !started, !shutdownSignal.isShuttingDown else { return }
+        started = true
+        if periodicObservation { startMonitor() }
+        else { systemOutputDidChange() }
+    }
+
+    func setPeriodicObservation(_ active: Bool) {
+        guard periodicObservation != active else { return }
+        periodicObservation = active
+        guard started, !shutdownSignal.isShuttingDown else { return }
+        if active {
+            startMonitor()
+        } else {
+            monitor?.cancel()
+            monitor = nil
+            // Keep the final observation and any native cleanup in flight.
+            // Only the periodic trigger stops when the panel closes.
+            systemOutputDidChange()
+        }
+    }
+
+    private func startMonitor() {
         guard monitor == nil, !shutdownSignal.isShuttingDown else { return }
         monitor = Task { [weak self, runtimePollDelay] in
             while !Task.isCancelled {
+                guard let active = self?.periodicObservation, active else { return }
                 self?.systemOutputDidChange()
                 do { try await Task.sleep(for: runtimePollDelay) }
                 catch { return }

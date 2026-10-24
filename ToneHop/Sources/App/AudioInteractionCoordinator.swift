@@ -54,6 +54,7 @@ final class AudioInteractionCoordinator: NSObject {
     }
 
     func setMenuTracking(_ active: Bool) { shortcuts.setSuspended(.menu, active) }
+    func setPanelVisible(_ visible: Bool) { volume.setPollingActive(visible) }
     func cancelRecording() { shortcuts.cancelRecording() }
 
     func removeRecord(_ binding: ShortcutBinding) {

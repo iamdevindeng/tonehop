@@ -428,6 +428,88 @@ final class AudioStoreInteractionTests: XCTestCase {
         try await store.shutdown()
     }
 
+    func testHiddenPanelStopsPollingForTenSecondsButStillReceivesHardwareChanges() async throws {
+        let trace = StoreInteractionTrace()
+        let hardware = StoreInteractionHardware(trace: trace)
+        let routes = StoreInteractionRoutes(trace: trace)
+        let store = AudioStore(hardware: hardware, routes: routes, pollingInterval: .milliseconds(25))
+        store.setPanelVisible(false)
+        store.start()
+        await waitUntil { !store.devices.isEmpty && !store.isRefreshing && routes.periodicObservation.last == false }
+        let settled = hardware.snapshotReads
+        try await Task.sleep(for: .seconds(10))
+        XCTAssertEqual(hardware.snapshotReads, settled, "Installed listeners must replace hidden periodic HAL reads.")
+
+        hardware.current = hardware.external.id
+        hardware.signalChange()
+        await waitUntil { store.currentDeviceID == hardware.external.id && !store.isRefreshing }
+
+        let beforeOpening = hardware.snapshotReads
+        store.setPanelVisible(true)
+        store.setPanelVisible(false)
+        store.setPanelVisible(true)
+        await waitUntil { hardware.snapshotReads >= beforeOpening + 3 }
+        XCTAssertEqual(routes.periodicObservation.last, true, "Rapid toggles must retain the replacement timer.")
+        store.setPanelVisible(false)
+        await waitUntil { !store.isRefreshing }
+        let hidden = hardware.snapshotReads
+        try await Task.sleep(for: .milliseconds(150))
+        XCTAssertEqual(hardware.snapshotReads, hidden)
+        try await store.shutdown()
+    }
+
+    func testOpeningStartsHardwarePollingWithoutWaitingForTheInterval() async throws {
+        let trace = StoreInteractionTrace()
+        let hardware = StoreInteractionHardware(trace: trace)
+        let routes = StoreInteractionRoutes(trace: trace)
+        let store = AudioStore(hardware: hardware, routes: routes, pollingInterval: .seconds(30))
+        store.setPanelVisible(false)
+        store.start()
+        await waitUntil { !store.devices.isEmpty && !store.isRefreshing && routes.periodicObservation.last == false }
+        let settled = hardware.snapshotReads
+        store.setPanelVisible(true)
+        await waitUntil { hardware.snapshotReads > settled }
+        XCTAssertEqual(routes.periodicObservation.last, true)
+        try await store.shutdown()
+    }
+
+    func testHiddenHardwareObserverFailureKeepsFallbackUntilRegistrationRecovers() async throws {
+        let trace = StoreInteractionTrace()
+        let hardware = StoreInteractionHardware(trace: trace)
+        hardware.failObservation = true
+        let routes = StoreInteractionRoutes(trace: trace)
+        let store = AudioStore(hardware: hardware, routes: routes,
+                               observerRetryDelay: .milliseconds(50), pollingInterval: .milliseconds(10))
+        store.setPanelVisible(false)
+        store.start()
+        await waitUntil { hardware.snapshotReads >= 4 && hardware.observationAttempts >= 2 }
+        XCTAssertEqual(routes.periodicObservation.last, true)
+        hardware.failObservation = false
+        await waitUntil { routes.periodicObservation.last == false && !store.isRefreshing }
+        let recovered = hardware.snapshotReads
+        try await Task.sleep(for: .milliseconds(100))
+        XCTAssertEqual(hardware.snapshotReads, recovered)
+        try await store.shutdown()
+    }
+
+    func testHiddenHardwareObservationInFlightKeepsPrivateAndHardwareFallback() async throws {
+        let trace = StoreInteractionTrace()
+        let hardware = StoreInteractionHardware(trace: trace)
+        hardware.holdObservation = true
+        let routes = StoreInteractionRoutes(trace: trace)
+        let store = AudioStore(hardware: hardware, routes: routes, pollingInterval: .milliseconds(10))
+        store.setPanelVisible(false)
+        store.start()
+        await waitUntil { hardware.hasPendingObservation && hardware.snapshotReads >= 3 }
+        XCTAssertEqual(routes.periodicObservation.last, true, "Registration has not succeeded yet.")
+        hardware.resumeObservation()
+        await waitUntil { routes.periodicObservation.last == false && !store.isRefreshing }
+        let installed = hardware.snapshotReads
+        try await Task.sleep(for: .milliseconds(100))
+        XCTAssertEqual(hardware.snapshotReads, installed)
+        try await store.shutdown()
+    }
+
     private func load(_ store: AudioStore) async {
         store.refresh()
         await waitUntil { !store.devices.isEmpty && !store.isRefreshing }
@@ -524,6 +606,12 @@ private final class StoreInteractionHardware: AudioHardwareProviding {
     var speakerObject: UInt32 = 100
     var streamObject: UInt32 = 200
     var snapshotReads = 0
+    var observationAttempts = 0
+    var failObservation = false
+    var holdObservation = false
+    private var pendingObservation: CheckedContinuation<Void, Never>?
+    var hasPendingObservation: Bool { pendingObservation != nil }
+    private var changed: (@Sendable () -> Void)?
     var writes: [String] = []
     var pauseNextSelection = false
     private var pendingSelection: CheckedContinuation<Void, Never>?
@@ -575,7 +663,19 @@ private final class StoreInteractionHardware: AudioHardwareProviding {
         pending?.resume()
     }
 
-    func observeChanges(_ changed: @escaping @Sendable () -> Void) async throws {}
+    func observeChanges(_ changed: @escaping @Sendable () -> Void) async throws {
+        observationAttempts += 1
+        if failObservation { throw AudioServiceError.unavailable("injected listener failure") }
+        if holdObservation { await withCheckedContinuation { pendingObservation = $0 } }
+        self.changed = changed
+    }
+    func signalChange() { changed?() }
+    func resumeObservation() {
+        holdObservation = false
+        let pending = pendingObservation
+        pendingObservation = nil
+        pending?.resume()
+    }
     func stopObserving() async {}
 }
 
@@ -584,6 +684,7 @@ private final class StoreInteractionRoutes: PrivateRouting {
     let receiverID = "receiver-complete-ID-fixture"
     let trace: StoreInteractionTrace
     var onChange: (() -> Void)?
+    var periodicObservation: [Bool] = []
     var includeReceiver = false
     var ownershipReads = 0
     var preparedLeaves = 0
@@ -599,6 +700,7 @@ private final class StoreInteractionRoutes: PrivateRouting {
 
     init(trace: StoreInteractionTrace) { self.trace = trace }
     func start() {}
+    func setPeriodicObservation(_ active: Bool) { periodicObservation.append(active) }
     func stop() {}
     func beginShutdown() { closed = true }
 

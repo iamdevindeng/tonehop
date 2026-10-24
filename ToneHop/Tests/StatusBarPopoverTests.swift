@@ -18,6 +18,7 @@ final class StatusBarPopoverTests: XCTestCase {
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         let controller = StatusBarController(store: store, statusItem: item)
         defer { controller.stop(); store.stop() }
+        XCTAssertFalse(store.isPanelVisible)
         let button = try XCTUnwrap(item.button)
         await waitUntil("status anchor ready") { button.window?.isVisible == true }
         let existing = Set(NSApp.windows.filter(\.isVisible).map(ObjectIdentifier.init))
@@ -26,6 +27,7 @@ final class StatusBarPopoverTests: XCTestCase {
             self.newPopoverWindow(excluding: existing, anchor: button.window) != nil
         }
         let panel = try XCTUnwrap(newPopoverWindow(excluding: existing, anchor: button.window))
+        XCTAssertTrue(store.isPanelVisible)
         try await Task.sleep(for: .milliseconds(2200))
         XCTAssertTrue(panel.isVisible, "Opening must not expire while waiting for application activation")
         XCTAssertGreaterThanOrEqual(panel.alphaValue, 0.99)
@@ -33,10 +35,12 @@ final class StatusBarPopoverTests: XCTestCase {
 
         button.performClick(nil)
         await waitUntil("shown panel closes") { !panel.isVisible }
+        XCTAssertFalse(store.isPanelVisible)
         button.performClick(nil)
         await waitUntil("a fresh production click reopens the same panel") {
             panel.isVisible && panel.alphaValue >= 0.99 && !panel.ignoresMouseEvents
         }
+        XCTAssertTrue(store.isPanelVisible)
         XCTAssertTrue(hardware.selectedUIDs.isEmpty)
         XCTAssertTrue(routes.selectedIdentifiers.isEmpty)
     }

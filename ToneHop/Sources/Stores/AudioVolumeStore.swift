@@ -27,6 +27,7 @@ final class AudioVolumeStore {
     @ObservationIgnored private var sequence: UInt64 = 0
     @ObservationIgnored private var observationID: UUID?
     @ObservationIgnored private var monitor: Task<Void, Never>?
+    @ObservationIgnored private(set) var isPollingActive = true
     @ObservationIgnored private var lastSubmission: [String: ContinuousClock.Instant] = [:]
     @ObservationIgnored private var delivery: AudioChangeDelivery?
     @ObservationIgnored private var operationIssues: [String: AudioVolumeIssue] = [:]
@@ -88,7 +89,7 @@ final class AudioVolumeStore {
         }
         rows = next
         guard !isPaused else { return }
-        startMonitoring()
+        updateMonitoring()
         observe()
         refresh()
     }
@@ -194,6 +195,13 @@ final class AudioVolumeStore {
         }
     }
 
+    func setPollingActive(_ active: Bool) {
+        guard !isClosed, isPollingActive != active else { return }
+        isPollingActive = active
+        updateMonitoring()
+        if active { refresh() }
+    }
+
     func resume() {
         guard !isClosed else { return }
         isPaused = false
@@ -202,7 +210,7 @@ final class AudioVolumeStore {
             rows[id]?.snapshot = nil
             rows[id]?.draftValue = nil
         }
-        startMonitoring()
+        updateMonitoring()
         observe()
         refresh()
     }
@@ -309,29 +317,47 @@ final class AudioVolumeStore {
             do {
                 try Task.checkCancellation()
                 try await provider.observeVolumeChanges(targets: targets) { delivery.signal() }
-                if !Task.isCancelled { self?.observationIssue = nil }
+                if !Task.isCancelled {
+                    self?.observationIssue = nil
+                    self?.updateMonitoring()
+                }
             } catch {
-                if !Task.isCancelled { self?.observationIssue = .listenerUnavailable }
+                if !Task.isCancelled {
+                    self?.observationIssue = .listenerUnavailable
+                    self?.updateMonitoring()
+                }
             }
         } completion: { [weak self] taskID in
             if self?.observationID == taskID { self?.observationID = nil }
         }
     }
 
-    private func startMonitoring() {
-        guard monitor == nil, !isPaused, !isClosed else { return }
+    private var needsPolling: Bool { isPollingActive || observationIssue != nil }
+
+    private func updateMonitoring() {
+        guard !isPaused, !isClosed, needsPolling else {
+            monitor?.cancel()
+            monitor = nil
+            return
+        }
+        guard monitor == nil else { return }
         monitor = Task { [weak self, pollingInterval] in
             var nextObservationRetry = ContinuousClock.now.advanced(by: .seconds(30))
             while !Task.isCancelled {
+                guard self?.periodicTick(nextObservationRetry: &nextObservationRetry) == true else { return }
                 do { try await Task.sleep(for: pollingInterval) } catch { return }
-                guard let self, !self.isPaused, !self.isClosed else { return }
-                self.refresh()
-                if self.observationIssue != nil, .now >= nextObservationRetry {
-                    self.observe()
-                    nextObservationRetry = .now.advanced(by: .seconds(30))
-                }
             }
         }
+    }
+
+    private func periodicTick(nextObservationRetry: inout ContinuousClock.Instant) -> Bool {
+        guard !isPaused, !isClosed, needsPolling else { return false }
+        refresh()
+        if observationIssue != nil, .now >= nextObservationRetry {
+            observe()
+            nextObservationRetry = .now.advanced(by: .seconds(30))
+        }
+        return true
     }
 
     private func launch(_ operation: @escaping @MainActor () async -> Void,

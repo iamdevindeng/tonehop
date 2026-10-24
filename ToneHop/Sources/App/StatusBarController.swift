@@ -89,6 +89,7 @@ final class StatusBarController: NSObject {
         }
         popover.onWillClose = { [weak self] in self?.popoverWillClose() }
         popover.onDidClose = { [weak self] in self?.popoverDidClose() }
+        setPanelVisible(false)
 
         for item in quitMenu.items where item.action == #selector(quitApplication) { item.target = self }
 
@@ -211,6 +212,7 @@ final class StatusBarController: NSObject {
         let revision = presentationRevision
         isClosing = false
         store.refresh()
+        setPanelVisible(true)
         // The nonactivating panel obtains key status itself. Do not initiate a
         // second application-activation transition while its glass is visible.
         popover.show(from: button)
@@ -226,7 +228,10 @@ final class StatusBarController: NSObject {
         wantsPopoverShown = false
         presentationRevision += 1
         statusItem.button?.highlight(false)
-        guard popover.isShown else { return }
+        guard popover.isShown else {
+            setPanelVisible(false)
+            return
+        }
         isClosing = true
         logger.info("Popover close requested: \(reason, privacy: .public)")
         guard animated else {
@@ -267,7 +272,14 @@ final class StatusBarController: NSObject {
         logger.info("Popover did close")
         if reopen, let button = statusItem.button {
             showPopover(from: button)
+        } else {
+            setPanelVisible(false)
         }
+    }
+
+    private func setPanelVisible(_ visible: Bool) {
+        store.setPanelVisible(visible)
+        interactions?.setPanelVisible(visible)
     }
 
     private func installEventMonitors() {

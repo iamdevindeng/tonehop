@@ -12,6 +12,8 @@ final class StatusBarVolumeIntegrationTests: XCTestCase {
         let button = try XCTUnwrap(fixture.item.button)
         let visiblePanels = Set(NSApp.windows.filter { $0 is NSPanel && $0.isVisible }.map(ObjectIdentifier.init))
         await start(fixture, button: button)
+        XCTAssertFalse(fixture.audio.isPanelVisible)
+        XCTAssertFalse(fixture.volume.isPollingActive)
         let originalImage = try XCTUnwrap(button.image)
         let imageSize = originalImage.size
         let itemLength = fixture.item.length
@@ -58,6 +60,26 @@ final class StatusBarVolumeIntegrationTests: XCTestCase {
         XCTAssertEqual(button.image?.size, imageSize)
         XCTAssertEqual(fixture.item.length, itemLength)
         XCTAssertEqual(Set(NSApp.windows.filter { $0 is NSPanel && $0.isVisible }.map(ObjectIdentifier.init)), visiblePanels)
+        assertReadOnly(fixture)
+        try await fixture.shutdown()
+    }
+
+    func testPanelVisibilityFansOutToVolumePollingAndStopsOnClose() async throws {
+        let fixture = StatusVolumeFixture()
+        defer { fixture.stop() }
+        let button = try XCTUnwrap(fixture.item.button)
+        await start(fixture, button: button)
+        await waitUntil("The status item is ready to anchor the panel") { button.window?.isVisible == true }
+        XCTAssertFalse(fixture.audio.isPanelVisible)
+        XCTAssertFalse(fixture.volume.isPollingActive)
+        button.performClick(nil)
+        await waitUntil("Opening enables both polling owners") {
+            fixture.audio.isPanelVisible && fixture.volume.isPollingActive
+        }
+        button.performClick(nil)
+        await waitUntil("Closing disables both polling owners") {
+            !fixture.audio.isPanelVisible && !fixture.volume.isPollingActive
+        }
         assertReadOnly(fixture)
         try await fixture.shutdown()
     }
