@@ -2,13 +2,16 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-ToneHop is a native macOS menu bar app. Use it to switch audio output devices, adjust device volume, and set global keyboard shortcuts. It uses SwiftUI, AppKit, and Core Audio.
+**Switch your Mac's sound output in one click.** ToneHop is a native macOS menu bar app.
 
-- Select an output device from the menu bar. ToneHop shows the switch result after the system confirms it.
-- Adjust a device's volume if the device has a supported volume control.
-- See the current output's volume and mute state next to the menu bar icon.
-- Set a shortcut for each device. ToneHop keeps saved shortcuts when a device is unavailable.
-- Use the app in English or Simplified Chinese. Device names keep their original text.
+| Feature | In short |
+|---|---|
+| 🎧 One-click switching | Hop between speakers, headphones and AirPlay anytime |
+| ⌨️ Shortcuts | One per device, no menu needed |
+| 🔊 Per-device volume | Each device keeps its own level |
+| 📊 Menu bar volume | Volume and mute shown next to the icon |
+| 🪶 Native and light | SwiftUI, AppKit and Core Audio, no third-party dependencies, 2.9 MB download |
+| 🆓 Free and open source | MIT license, no ads, no login, English and Simplified Chinese |
 
 **[Download ToneHop v0.1.1 for Apple silicon](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.1)** · [All releases](https://github.com/iamdevindeng/tonehop/releases)
 
@@ -210,7 +213,9 @@ ToneHop removes only streams that it can confirm it owns. It does not remove str
 
 Volume support depends on the device and the available system controls. ToneHop cannot adjust the volume of some devices. Changing volume does not connect or switch to that device.
 
-Switching changes the default media output. It does not change the system sound-effects output.
+Switching changes the default media output. It does not change the system sound-effects output. ToneHop shows the switch result only after the system confirms it.
+
+The app is available in English and Simplified Chinese. Device names keep their original text.
 
 ### Permissions and verification
 
