@@ -7,11 +7,16 @@
 | Feature | In short |
 |---|---|
 | 🎧 One-click switching | Hop between speakers, headphones and AirPlay anytime |
+| 🔁 **AirPlay reconnects instantly** | Hop between AirPods and an AirPlay speaker without the "device in use" error\* |
 | ⌨️ Shortcuts | One per device, no menu needed |
 | 🔊 Per-device volume | Each device keeps its own level |
 | 📊 Menu bar volume | Volume and mute shown next to the icon |
 | 🪶 Native and light | SwiftUI, AppKit and Core Audio, no third-party dependencies, 2.9 MB download |
 | 🆓 Free and open source | MIT license, no ads, no login, English and Simplified Chinese |
+
+\* While ToneHop is running. Enabled on macOS 27 (tested on 27.0.1); see [AirPlay and other limits](#airplay-and-other-limits).
+
+**Why it matters:** On macOS, switching from an AirPlay speaker to AirPods and back often fails with "device in use", and you have to wait or reconnect. While ToneHop is running, it recognizes the connection macOS left behind and picks it back up, so switching back just works, from the menu or a shortcut.
 
 **[Download ToneHop v0.1.1 for Apple silicon](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.1)** · [All releases](https://github.com/iamdevindeng/tonehop/releases)
 
@@ -200,7 +205,7 @@ Some AirPlay devices need an initial selection in the macOS Sound menu **while T
 
 ToneHop enables recovery of an existing AirPlay stream without a previously captured reference only when both conditions apply:
 
-- The Mac runs **macOS 27.0.1**. This recovery is disabled on all other versions.
+- The Mac runs **macOS 27** (any minor version; tested on 27.0.1 only). This recovery is disabled on other major versions.
 - The required identity and output checks pass.
 
 This recovery does not automatically switch the output at startup.

@@ -7,11 +7,16 @@
 | 特点 | 一句话 |
 |---|---|
 | 🎧 一键切换 | 扬声器、耳机、AirPlay 之间随时切 |
+| 🔁 **AirPlay 秒接回** | AirPods 和 AirPlay 音箱来回切，不再提示“设备已被占用”\* |
 | ⌨️ 快捷键 | 每个设备一个，不用开菜单 |
 | 🔊 独立音量 | 每个设备各调各的 |
 | 📊 菜单栏音量 | 图标旁显示音量和静音 |
 | 🪶 原生又轻量 | 使用 SwiftUI、AppKit 和 Core Audio，没有第三方依赖，安装包只有 2.9 MB |
 | 🆓 免费开源 | MIT 协议，没有广告，不用登录，中英双语 |
+
+\* 需 ToneHop 运行中，在 macOS 27 上启用（已在 27.0.1 上测试），详见 [AirPlay 与其他限制](#airplay-与其他限制)。
+
+**为什么做这个？** 在 macOS 里，从 AirPlay 音箱切到 AirPods 再切回来，系统常常会提示“设备已被占用”，只能等一会儿或重新连接。ToneHop 运行时会认出系统留下的旧连接并直接接回，所以不管你是点菜单还是按快捷键，都能直接切回去。
 
 **[下载适用于 Apple 芯片的 ToneHop v0.1.1](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.1)** · [所有版本](https://github.com/iamdevindeng/tonehop/releases)
 
@@ -199,7 +204,7 @@ open "$TONEHOP_DERIVED_DATA/Build/Products/Release"
 
 尚未持有先前捕获的设备或音频流参照时，ToneHop 仅在同时满足以下条件时才会恢复已有的 AirPlay 流：
 
-- Mac 运行 **macOS 27.0.1**。其他版本均未启用此恢复机制。
+- Mac 运行 **macOS 27**（不限小版本，目前只在 27.0.1 上测试过）。其他大版本均未启用此恢复机制。
 - 所需的身份与输出检查通过。
 
 此恢复机制不会在启动时自动切换输出。
