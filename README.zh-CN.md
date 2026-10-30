@@ -18,7 +18,7 @@
 
 **为什么做这个？** 在 macOS 里，从 AirPlay 音箱切到 AirPods 再切回来，系统常常会提示“设备已被占用”，只能等一会儿或重新连接。ToneHop 运行时会认出系统留下的旧连接并直接接回，所以不管你是点菜单还是按快捷键，都能直接切回去。
 
-**[下载适用于 Apple 芯片的 ToneHop v0.1.1](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.1)** · [所有版本](https://github.com/iamdevindeng/tonehop/releases)
+**[下载适用于 Apple 芯片的 ToneHop v0.1.2](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.2)** · [所有版本](https://github.com/iamdevindeng/tonehop/releases)
 
 <p align="center">
   <img src="docs/images/tonehop-menu.png" width="328" alt="ToneHop 英文界面：音频输出设备列表、音量控制和快捷键">
@@ -28,7 +28,7 @@
 
 前往[发布页面](https://github.com/iamdevindeng/tonehop/releases)下载安装包：
 
-- **macOS · Apple 芯片：** [ToneHop-0.1.1-arm64.dmg](https://github.com/iamdevindeng/tonehop/releases/download/v0.1.1/ToneHop-0.1.1-arm64.dmg)
+- **macOS · Apple 芯片：** [ToneHop-0.1.2-arm64.dmg](https://github.com/iamdevindeng/tonehop/releases/download/v0.1.2/ToneHop-0.1.2-arm64.dmg)
 
 需要搭载 **Apple 芯片的 Mac**，以及 **macOS 27.0 或更高版本**。无需安装 Xcode。
 此版本已在 macOS 27.0.1 上测试。其他 macOS 版本和硬件尚未验证。
@@ -63,10 +63,10 @@ ToneHop 在菜单栏中运行。启动时不会打开主窗口，也不会更改
 从同一发布页面下载配套的 `.sha256` 文件。将它与 DMG 放在同一文件夹中。在该文件夹中打开终端，运行以下命令：
 
 ```sh
-shasum -a 256 -c ToneHop-0.1.1-arm64.dmg.sha256
+shasum -a 256 -c ToneHop-0.1.2-arm64.dmg.sha256
 ```
 
-预期结果为 `ToneHop-0.1.1-arm64.dmg: OK`。请使用与你下载的版本对应的文件名。
+预期结果为 `ToneHop-0.1.2-arm64.dmg: OK`。请使用与你下载的版本对应的文件名。
 
 </details>
 
@@ -152,7 +152,7 @@ open "$TONEHOP_DERIVED_DATA/Build/Products/Release"
 ```sh
 ./script/package_dmg.sh \
   "$TONEHOP_DERIVED_DATA/Build/Products/Release/ToneHop.app" \
-  "$TONEHOP_DERIVED_DATA/dist/ToneHop-0.1.1-arm64.dmg"
+  "$TONEHOP_DERIVED_DATA/dist/ToneHop-0.1.2-arm64.dmg"
 ```
 
 打包脚本不会构建或启动应用。它会拒绝覆盖已有的输出文件。

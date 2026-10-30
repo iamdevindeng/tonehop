@@ -18,7 +18,7 @@
 
 **Why it matters:** On macOS, switching from an AirPlay speaker to AirPods and back often fails with "device in use", and you have to wait or reconnect. While ToneHop is running, it recognizes the connection macOS left behind and picks it back up, so switching back just works, from the menu or a shortcut.
 
-**[Download ToneHop v0.1.1 for Apple silicon](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.1)** · [All releases](https://github.com/iamdevindeng/tonehop/releases)
+**[Download ToneHop v0.1.2 for Apple silicon](https://github.com/iamdevindeng/tonehop/releases/tag/v0.1.2)** · [All releases](https://github.com/iamdevindeng/tonehop/releases)
 
 <p align="center">
   <img src="docs/images/tonehop-menu.png" width="328" alt="ToneHop device list with volume controls and keyboard shortcuts">
@@ -28,7 +28,7 @@
 
 Download the app from [Releases](https://github.com/iamdevindeng/tonehop/releases):
 
-- **macOS · Apple silicon:** [ToneHop-0.1.1-arm64.dmg](https://github.com/iamdevindeng/tonehop/releases/download/v0.1.1/ToneHop-0.1.1-arm64.dmg)
+- **macOS · Apple silicon:** [ToneHop-0.1.2-arm64.dmg](https://github.com/iamdevindeng/tonehop/releases/download/v0.1.2/ToneHop-0.1.2-arm64.dmg)
 
 ToneHop requires an **Apple silicon Mac** with **macOS 27.0 or later**. You do not need Xcode.
 We tested this release on macOS 27.0.1. Other macOS versions and hardware remain unverified.
@@ -63,10 +63,10 @@ If macOS reports malware or a damaged app, stop. Check the download instead.
 Download the matching `.sha256` file from the same release. Put the `.sha256` file beside the DMG. Open Terminal in that folder. Run this command:
 
 ```sh
-shasum -a 256 -c ToneHop-0.1.1-arm64.dmg.sha256
+shasum -a 256 -c ToneHop-0.1.2-arm64.dmg.sha256
 ```
 
-The expected result is `ToneHop-0.1.1-arm64.dmg: OK`. Use the filenames for the version you downloaded.
+The expected result is `ToneHop-0.1.2-arm64.dmg: OK`. Use the filenames for the version you downloaded.
 
 </details>
 
@@ -153,7 +153,7 @@ To package the built app with the MIT license and a SHA-256 checksum, run this c
 ```sh
 ./script/package_dmg.sh \
   "$TONEHOP_DERIVED_DATA/Build/Products/Release/ToneHop.app" \
-  "$TONEHOP_DERIVED_DATA/dist/ToneHop-0.1.1-arm64.dmg"
+  "$TONEHOP_DERIVED_DATA/dist/ToneHop-0.1.2-arm64.dmg"
 ```
 
 The packaging script does not build or launch the app. It refuses to overwrite existing output files.
