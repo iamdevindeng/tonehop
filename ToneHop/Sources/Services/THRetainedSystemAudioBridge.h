@@ -4,6 +4,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class THPrivateEndpointBridge, THPrivateAudioRuntime;
 
+/// Existing-stream recovery is enabled only on macOS 27, regardless of minor or patch version.
+FOUNDATION_EXPORT BOOL THRExistingStreamRecoverySupportedOS(NSOperatingSystemVersion version);
+
 /// Strict, case-sensitive grammar verified for the macOS 27.0.1 aggregate Audio
 /// stream constructor. Parsing alone is not route or selected-state evidence.
 FOUNDATION_EXPORT BOOL THExistingStreamUIDMatchesAggregate(NSString *uid, NSString *aggregateIdentifier);

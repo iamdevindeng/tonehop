@@ -10,6 +10,29 @@ final class ExistingSystemStreamRecoveryEvidenceTests: XCTestCase {
     private let aggregate = "12345678-abcd-4abc-8def-123456789abc"
     private var uid: String { "\(aggregate)-100-Audio" }
 
+    func testExistingStreamRecoverySupportsOnlyMacOS27RegardlessOfMinorOrPatchVersion() {
+        let cases: [(major: Int, minor: Int, patch: Int, supported: Bool)] = [
+            (27, 0, 0, true),
+            (27, 0, 1, true),
+            (27, 1, 0, true),
+            (27, 3, 2, true),
+            (26, 9, 9, false),
+            (28, 0, 0, false)
+        ]
+        for testCase in cases {
+            let version = OperatingSystemVersion(
+                majorVersion: testCase.major,
+                minorVersion: testCase.minor,
+                patchVersion: testCase.patch
+            )
+            XCTAssertEqual(
+                THRExistingStreamRecoverySupportedOS(version),
+                testCase.supported,
+                "macOS \(testCase.major).\(testCase.minor).\(testCase.patch)"
+            )
+        }
+    }
+
     func testColdStartRecoveryEnablesOnlyTheDiscoveredReceiverWithoutClaimingSelectionOrVolume() {
         let snapshot = merge()
         XCTAssertEqual(snapshot.routes.count, 1)

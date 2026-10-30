@@ -41,6 +41,9 @@ static BOOL THRHasType(id value, CFTypeID type) {
     return value && CFGetTypeID((__bridge CFTypeRef)value) == type;
 }
 static BOOL THRString(id value) { return THRHasType(value, CFStringGetTypeID()) && [value length] > 0; }
+BOOL THRExistingStreamRecoverySupportedOS(NSOperatingSystemVersion version) {
+    return version.majorVersion == 27;
+}
 BOOL THExistingStreamUIDMatchesAggregate(NSString *uid, NSString *aggregateIdentifier) {
     if (!THRString(uid) || !THRString(aggregateIdentifier)) return NO;
     NSString *prefix = [aggregateIdentifier stringByAppendingString:@"-"];
@@ -997,7 +1000,7 @@ static CFTypeRef THRCopyUniqueLeaf(THPrivateAudioRuntime *runtime, NSArray *rout
 // is separate and additionally validates the current/target HAL write capability.
 - (NSDictionary *)existingStreamAssociationSample {
     NSOperatingSystemVersion version = NSProcessInfo.processInfo.operatingSystemVersion;
-    if (version.majorVersion != 27 || version.minorVersion != 0 || version.patchVersion != 1 ||
+    if (!THRExistingStreamRecoverySupportedOS(version) ||
         _session.aggregate || _transaction.owned || _transaction.add || _transaction.remove || _transaction.mustClean || _session.invalidated) return nil;
     CFTypeRef context = NULL, manager = NULL, leaf = NULL;
     @try {
